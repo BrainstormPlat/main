@@ -69,55 +69,31 @@ Client.prototype.disconnect = function() {
         $.ajax({
         data: 'action=Disconnect&sock='+this.socket,
         success: this.onSuccess,
-                           complete:user.onComplete
-                       });
-                       user.sock = null;
-                       user.conn = false;
-                       user.read.abort();
-                   }
+        complete: this.onComplete
+        });
+        this.socket = null;
+        this.connect = false;
+        this.read.abort();
+    }
 }
-               
-                /*
-                * Действие.
-                * Отсоединение от сервера.
-                */
-               Disconnect: function() {
-                 
-                },
-               
-                /*
-                * Действие.
-                * Отправка данных на сервер.
-                */
-               Send: function() {
-                   if (user.conn) {
-                       var data = $.trim($('#input').val());
-                       if (!data) {
-                           return;
-                       }
-                       $.ajax({
-                           data:'action=Send&sock='+user.sock+'&data='+data,
-                           success:user.onSuccess,
-                           complete:user.onComplete
-                       });
-                       $('#input').val('');
-                   } else {
-                       log.print('Please connect.');
-                   }
-                },
-               
-                /*
-                * Действие.
-                * Прослушивание соккета.
-                */
-               Read: function() {
-                   if (user.conn) {
-                       user.read = $.ajax({
-                           data:'action=Read&sock='+user.sock,
-                           success:user.onSuccess,
-                           complete:user.onCompleteRead
-                       });
-                   }
-                }
-               
-            };
+
+Client.prototype.send = function() {
+    if (this.connect) {
+        $.ajax({
+            data: 'action=Send&sock='+this.socket+'&data='+data,
+            success: this.onSuccess,
+            complete: this.onComplete
+        });
+    }
+}
+ 
+Client.prototype.read = function() {
+    if (this.connect) {
+        this.read = $.ajax({
+            data: 'action=Read&sock=' + this.socket,
+            success: this.onSuccess,
+            complete: this.onCompleteRead
+            });
+    }
+}               
+ 
