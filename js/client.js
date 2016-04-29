@@ -1,36 +1,39 @@
 "use strict"
 $.ajaxSetup({url: 'server.php', type: 'post', dataType: 'json'});
+
 function Action() {
     this.user = new Client();
 }
 
-Action.prototype.connect = function (params) {
+Action.prototype.Connect = function (params) {
      console.log('Connected.');
      console.log('Socket: '+params.socket);
-     user.socket = params.socket;
-     user.connect = true;
-     user.Read();
+     this.user.socket = params.socket;
+     this.user.connect = true;
+     this.user.Read();
 }
 
-Action.prototype.disconnect = function() {
+Action.prototype.disconnect = function(params) {
     console.log("Disconnected.");
 }
 
 Action.prototype.print = function(params) {
     condol.log("Message: "+params.message);
 }
+
 function Client () {
-    this.socket = 0;
+    this.socket = null;
     this.connect = false;
     this.busy = false;
-    this.read = 0;
+    this.read = null;
+    this.action = new Action();
 }
 
-Client.prototype.onSuccess =  function(data) {
+Client.prototype.OnSuccess =  function(data) {
     if (typeof data.actions == 'object') {
-        for (var i = 0; i <data.actions.length; i++) {
-             if (typeofactions[data.actions[i].action] == 'function') {
-                 actionS[data.actions[i].action](data.actions[i].params);
+        for (var i = 0, iLength = data.actions.length; i < iLength; i++) {
+             if (typeof this.action.prototype[data.actions[i].action] == 'function') {
+                 this.action.prototype[data.actions[i].action](data.actions[i].params);
              } 
         }
     }
@@ -38,38 +41,38 @@ Client.prototype.onSuccess =  function(data) {
                
 Client.prototype.onComplete = function(xhr) {
     if (xhr.status == 404) {
-        actions.Disconnect();
+        this.action.Disconnect();
     }
     this.busy = false;
 }     
                   
-Client.prototype.onCompleteRead = function(xhr) {
+Client.prototype.OnCompleteRead = function(xhr) {
     if (xhr.status == 200) {
-        user.Read();
+        this.Read();
     } else 
         setTimeout(this.Read, 5000);
 }
                
-Client.prototype.connect = function() {
-    if (user.conn == false && user.busy == false) {
+Client.prototype.Connect = function() {
+    if (this.connect && this.busy) {
         console.log('Connecting...');
         this.busy = true;
         $.ajax({
             data: 'action=Connect',
-            success: this.onSuccess,
-            complete: this.onComplete
+            success: this.OnSuccess,
+            complete: this.OnComplete
         });
-    }
+    }s
 }
 
-Client.prototype.disconnect = function() {
-    if (user.conn && user.busy == false &&user.read) {
+Client.prototype.Disconnect = function() {
+    if (this.connect && this.busy && this.read) {
         console.log('Disconnecting...');
         this.busy = true;
         $.ajax({
         data: 'action=Disconnect&sock='+this.socket,
-        success: this.onSuccess,
-        complete: this.onComplete
+        success: this.OnSuccess,
+        complete: this.OnComplete
         });
         this.socket = null;
         this.connect = false;
@@ -77,22 +80,22 @@ Client.prototype.disconnect = function() {
     }
 }
 
-Client.prototype.send = function() {
+Client.prototype.Send = function() {
     if (this.connect) {
         $.ajax({
-            data: 'action=Send&sock='+this.socket+'&data='+data,
-            success: this.onSuccess,
-            complete: this.onComplete
+            data: 'action=Send&sock='+this.socket + '&data=' + data,
+            success: this.OnSuccess,
+            complete: this.OnComplete
         });
     }
 }
  
-Client.prototype.read = function() {
+Client.prototype.Read = function() {
     if (this.connect) {
         this.read = $.ajax({
             data: 'action=Read&sock=' + this.socket,
-            success: this.onSuccess,
-            complete: this.onCompleteRead
+            success: this.OnSuccess,
+            complete: this.OnCompleteRead
             });
     }
 }               
