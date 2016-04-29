@@ -26,6 +26,7 @@
     width: 255px;
     margin: 15px; }
     #ideas .idea h3 {
+      margin-top: 10px;
       text-align: center; }
     #ideas .idea p {
       padding: 10px 15px; }
