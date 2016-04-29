@@ -1,6 +1,19 @@
 #steps {
-	text-align: center;
-	.step {
-		display: inline-block;
-	}
+    text-align: center;
+    .step {
+        display: inline-block;
+        height: 65px;
+        width: 65px;
+        border: solid 2px black;
+        border-radius: 50%;
+        font-size: 36px;
+        padding: 5px;
+        margin: 0 50px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    .step:hover {
+    	background: #000;
+    	color: #fff;
+    }
 }
