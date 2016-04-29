@@ -1,3 +1,6 @@
-
+#steps {
+  text-align: center; }
+  #steps .step {
+    display: inline-block; }
 
 /*# sourceMappingURL=style.css.map */
