@@ -11,5 +11,7 @@ function Idea() {
 function parseToJSON(idea) {
     var JSONstr = JSON.stringify(idea);
     var str = JSON.parse(JSONstr);
-    alert(str);
 }
+
+parseToJSON(new Idea());
+$('.idea').append('jh');
