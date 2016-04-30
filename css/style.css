@@ -107,21 +107,36 @@ nav {
     flex-wrap: wrap; }
   #ideas .idea {
     display: inline-block;
+    position: relative;
     background: #fff;
     border-radius: 10px;
     width: 255px;
     margin: 15px auto; }
     #ideas .idea h3 {
+      display: block;
       width: 90%;
-      margin: 10px;
+      margin: 5px auto;
       text-align: center;
       border-bottom: 1px solid #000; }
     #ideas .idea p {
-      padding: 10px 15px;
-      border: dotted 1px grey; }
+      padding: 5px;
+      margin: 0; }
     #ideas .idea .save_button {
       background: green;
       color: #fff; }
+    #ideas .idea .rating_container {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      opacity: 1;
+      display: flex;
+      justify-content: space-around;
+      align-items: center; }
+    #ideas .idea .idea:hover .rating_container {
+      opacity: 1; }
 
 #add_idea {
   height: 60px;
@@ -188,10 +203,47 @@ nav {
   border-radius: 50px;
   box-shadow: 0 5px 15px #ff0093;
   transition: all 0.3s;
-  cursor: pointer; }
+  cursor: pointer;
+  outline: none; }
 
 .action_button:hover {
   box-shadow: 0 0 20px #FF00E4; }
+
+/****** Style Star Rating Widget *****/
+.rating {
+  border: none;
+  float: left; }
+
+.rating > input {
+  display: none; }
+
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005"; }
+
+.rating > .half:before {
+  content: "\f089";
+  position: absolute; }
+
+.rating > label {
+  color: #ddd;
+  float: right; }
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #FFD700; }
+
+/* hover previous stars in list */
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+  color: #FFED85; }
 
 /*==========  Non-Mobile First Method  ==========*/
 @media only screen and (max-width: 768px) {

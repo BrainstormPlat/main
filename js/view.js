@@ -34,10 +34,10 @@ $(document).ready(function() {
     $('#add_idea').click(function() {
         $(this).before('<div class="idea idea_container">' + '<h3>header</h3>' + '<p>text</p>' + '</div>');
         $('.idea').draggabilly({});
-        $('#ideas').masonry({
+        /*$('#ideas').masonry({
             // options
             itemSelector: '.idea',
             columnWidth: 200
-        });
+        });*/
     });
 });
