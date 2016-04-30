@@ -24,4 +24,9 @@ google.setOnLoadCallback(onLoad);
 //client
 var client = new Client("http://10.240.20.158:9090/chat"); 
 client.connect(new Idea().QueryJson());
-new VKClient().init();
+VK.init({
+  apiId: 1121
+});
+
+VK.Auth.getLoginStatus(authInfo);
+VK.UI.button('login_button');
