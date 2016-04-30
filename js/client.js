@@ -19,13 +19,14 @@ var actions = {
    } 
 };
 
-var Client  =  {
+var Client = {
     socket : 0,
     connect : false,
     busy : false,
     read : 0,
     
     OnSuccess : function(data) {
+        console.log("client onsuccess");
         if (typeof data.actions == 'object') {
             for (var i = 0, iLength = data.actions.length; i < iLength; i++) {
                 if (typeof actions[data.actions[i].action] == 'function') {
