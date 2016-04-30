@@ -11,7 +11,7 @@ Client.prototype.connect = function(auth_json) {
     socket.onmessage =  function (event) {
         var data = jQuery.parseJSON(event.data);  
         if (data.data_type == 'data') {
-            parse(data); 
+            this.parse(data); 
         } else if (data.data_type == 'auth_error') {
             throw data.data.message;
         }
