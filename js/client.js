@@ -22,6 +22,3 @@ Client.prototype.connect = function(auth_json) {
             parse(data);   
     };
 }
-
-var client = new Client("http://10.240.20.158:9090/chat"); 
-client.connect(new Idea().QueryJson());
