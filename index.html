@@ -5,20 +5,15 @@
     <meta charset="UTF-8">
     <title>Brainstorm</title>
     <link rel="stylesheet" href="css/normalize.css">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/grid12.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
-    <script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
     <script src="https://npmcdn.com/draggabilly@2.1/dist/draggabilly.pkgd.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="https://google.com/jsapi"></script>
     <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
     <script src="js/sockjs-0.3.4.min.js"></script>
-    <script src="js/idea.js" /></script>
+    <script src="js/idea.js"></script>
     <script src="js/client.js"></script>
     <script src="js/view.js"></script>
     <script src="js/handler.js"></script>
@@ -27,77 +22,55 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-inverse ">
-        <!--class="navbar-fixed-top"-->
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/main">Brainstorm</a>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#"><img src="template-assets/logo.png" alt=""></a>
+            <div class="user_block pull-right"><img src="template-assets/userpic.png" alt="">
+                <p>User Name</p>
             </div>
-            <ul class="nav navbar-nav">
-                <!--<li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Page 1</a></li>
-                <li><a href="#">Page 2</a></li>
-                <li><a href="#">Page 3</a></li>-->
-            </ul>
         </div>
     </nav>
-    <div id="searchbox">
-        <script>
-        (function() {
-            var cx = '010883068300123991560:yplkhrsjnem';
-            var gcse = document.createElement('script');
-            gcse.type = 'text/javascript';
-            gcse.async = true;
-            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(gcse, s);
-        })();
-        </script>
-        <div style="width:0px;overflow:hidden;height:0px;">
-            <gcse:search></gcse:search>
-        </div>
-        <form id="searchbox_XXXXXXXXXX:YYYYYYYYY" action="">
-            <!--<input value="XXXXXXXXXX:YYYYYYYYY" name="cx" type="hidden"/>-->
-            <!--<input value="FORID:11" name="cof" type="hidden"/>-->
-            <input id="q" style="z-index: 5000" name="q" size="75" type="text" />
-            <button class="btn">Search</button>
-        </form>
-    </div>
     <section id="steps">
-        <div class="container-fluid">
-            <div id="step_1" class="step">1</div>
-            <div id="step_2" class="step">2</div>
-            <div id="step_3" class="step">3</div>
-            <div id="step_4" class="step">4</div>
-        </div>
+        <div id="step_1" class="step active_step"></div>
+        <div id="step_2" class="step"></div>
+        <div id="step_3" class="step"></div>
+        <div id="step_4" class="step"></div>
     </section>
     <section id="add_board" class="working_class">
         <div class="container">
             <div class="row">
-                <form action="">
-                    <div class="form-group input_container">
-                        <label for="theme">Название темы</label>
-                        <input type="text" placeholder="Введите название темы" class="form-control" id="theme">
-                    </div>
-                    <div class="form-group input_container col-lg-6">
-                        <label for="pwd">Участники:</label>
-                        <input type="text" placeholder="Введите имя" class="form-control" id="pwd">
-                    </div>
-                </form>
+                <div class="col-md-offset-2 col-md-8 form_container">
+                    <form>
+                        <h2>Brainstorm theme:</h2>
+                        <input type="text" placeholder="Enter your theme" class="form-control" name="theme" id="theme">
+                        <h2>Participants:</h2>
+                        <input type="text" placeholder="Enter participant name" class="form-control" name="name" id="pwd">
+                        <div style="padding: 0;" class="col-md-12">
+                            <button id="add_participant" onclick="return false" class="plus_button">+</button>
+                        </div>
+                        <div style="padding: 0;" class="col-md-12">
+                            <button id="begin_storm" onclick="return false" class="action_button">Start!</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
-    <section id="ideas" class="working_class">
-        <div class="container" data-masonry='{ "itemSelector": ".idea", "columnWidth": 180 }'>
+    <section id="ideas" class="working_class hidden">
+        <span class="timer">14:18</span>
+        <div class="container-fluid ideas_container">
             <div class="idea">
                 <h3>header</h3>
                 <p>text</p>
             </div>
             <div class="idea">
                 <h3>header</h3>
-                <p>это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.</p>
+                <p>это текст-"рыба", часто используемый в печати и вэб-дизайне. </p>
             </div>
-            <button class="idea" id="add_idea">+</button>
+            <button class="plus_button" id="add_idea">+</button>
+        </div>
+        <div style="padding: 0;" class="col-md-12">
+            <button id="begin_storm" onclick="return false" class="action_button">Start!</button>
         </div>
     </section>
     <div id="login_button" onclick="VK.Auth.login(authInfo);">Login</div>

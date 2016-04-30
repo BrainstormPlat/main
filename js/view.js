@@ -1,6 +1,7 @@
 //some events
 
 $(document).ready(function() {
+    $('#ideas').hide();
     $('.idea').draggabilly({});
     $(".idea p, .idea h3").click(function() {
         $(this).attr('contenteditable', 'true');
