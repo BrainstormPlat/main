@@ -5,6 +5,7 @@ function Idea() {
     this.id = _id;
     _id++;
     this.text = "My Idea";
+    this.description = "This is my idea. Hooray!";
     this.priority = 0;
 }
 
