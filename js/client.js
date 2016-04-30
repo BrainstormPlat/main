@@ -80,7 +80,7 @@ var Client  =  {
         }
     },
     Send : function(data) {
-         if (Client.connect) {
+      //   if (Client.connect) {
             console.log("RESPONSE1");
             $.ajax({
                 data: 'action=Send&sock='+Client.socket + '&data=' + data,
@@ -88,7 +88,7 @@ var Client  =  {
                 complete: Client.OnComplete
             });
             console.log("RESPONSE2");
-          }
+     //     }
     },
     Read : function() {
         if (Client.connect) {
