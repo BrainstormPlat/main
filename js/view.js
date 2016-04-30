@@ -2,9 +2,9 @@
 
 $(document).ready(function() {
     $('.idea').draggabilly({});
-    $(".idea p, .idea h3").dblclick(function() {
+    $(".idea p, .idea h3").click(function() {
         $(this).attr('contenteditable', 'true');
-        $(this).append('<button class="save_button">save</button>');
+       // $(this).after('<button class="save_button">save</button>');
     });
     $('#step_1').click(function() {
         $('.step').removeClass('active_step');
@@ -29,5 +29,9 @@ $(document).ready(function() {
         $('.working_class').hide();
         $('#ideas').fadeIn();
         $(this).addClass('active_step');
+    });
+    $('#add_idea').click(function() {
+        $(this).before('<div class="idea idea_container">' + '<h3>header</h3>' + '<p>text</p>' + '</div>');
+        $('.idea').draggabilly({});
     });
 });

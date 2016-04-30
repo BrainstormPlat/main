@@ -18,7 +18,7 @@
     <!-- Google API for whatever reason -->
     <script src="https://google.com/jsapi"></script>
     <script type="text/javascript">
-        google.load("search", "1");
+    google.load("search", "1");
     </script>
     <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
     <script src="js/sockjs-0.3.4.min.js"></script>
@@ -92,39 +92,16 @@
         </div>
     </section>
     <section id="ideas" class="working_class">
-        <div class="container" data-masonry='{ "itemSelector": ".idea", "columnWidth": 180 }'>
-            <div class="idea">
+        <div class="container" data-masonry='{ "itemSelector": ".idea, plus_idea", "columnWidth": 180 }'>
+            <div class="idea idea_container">
                 <h3>header</h3>
                 <p>text</p>
             </div>
-            <div class="idea">
+            <div class="idea idea_container">
                 <h3>header</h3>
                 <p>text</p>
             </div>
-            <div class="idea">
-                <h3>header</h3>
-                <p>это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.</p>
-            </div>
-            <div class="idea">
-                <h3>header</h3>
-                <p>text</p>
-            </div>
-            <div class="idea">
-                <h3>header</h3>
-                <p>это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.</p>
-            </div>
-            <div class="idea">
-                <h3>header</h3>
-                <p>text</p>
-            </div>
-            <div class="idea">
-                <h3>header</h3>
-                <p>это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.</p>
-            </div>
-            <div class="idea">
-                <h3>header</h3>
-                <p>text</p>
-            </div>
+            <button class="idea" id="add_idea">+</button>
         </div>
     </section>
 </body>
