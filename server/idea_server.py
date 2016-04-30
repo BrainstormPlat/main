@@ -4,7 +4,7 @@ from pprint import pformat
 
 PORT = 9090
 FILE_TO_SERVE = '../jss.json'
-
+form = cgi.FieldStorage()
 
 class MyHandler(BaseHTTPRequestHandler):
     """
@@ -19,17 +19,16 @@ class MyHandler(BaseHTTPRequestHandler):
         self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
         self.send_header("Access-Control-Allow-Headers", "X-Requested-With, Content-type")
 
-    def do_POST(self, *args, **kwargs):
-        #ctype, pdict = cgi.parse_header(self.headers.getheader('content-type'))
+    def do_POST(self):
         
-
             # set headers
             self.send_response(200)
             self.send_header('Access-Control-Allow-Credentials', 'true')
             self.send_header('Access-Control-Allow-Origin', '*')
             self.send_header("Content-type", "text/json")
             self.end_headers()
-            print ("Something came")
+			
+            print ("Che to")
 
         
 

@@ -6,6 +6,7 @@ import tornado.ioloop
 import tornado.web
 
 import sockjs.tornado
+from _thread import *
 
 
 class IndexHandler(tornado.web.RequestHandler):
@@ -14,10 +15,12 @@ class IndexHandler(tornado.web.RequestHandler):
         self.render('index.html')
 
 
-class ChatConnection(sockjs.tornado.SockJSConnection):
-    """Chat connection implementation"""
+class IdeaConnection(sockjs.tornado.SockJSConnection):
     # Class level variable
     participants = set()
+    ideas_list = []
+    connection_processed = 0
+    lock = allocate_lock()
 
     def on_open(self, info):
         # Send that someone joined
@@ -27,21 +30,40 @@ class ChatConnection(sockjs.tornado.SockJSConnection):
         self.participants.add(self)
 
     def on_message(self, message):
-        # Broadcast message
+        #Process message
         print(message)
-        self.broadcast(self.participants, message)
-
+        start_new_thread(self.process_message, (message, ))
+        
+        
     def on_close(self):
         # Remove client from the clients list and broadcast leave message
         self.participants.remove(self)
         self.broadcast(self.participants, "Someone left.")
+    
+    def process_message(self, message):
+        json_msg = sockjs.tornado.proto.json_decode(message)
+        self.ideas_list.append(json_msg)
+        json_msg['source'] = self.session.conn_info.ip
+        message = sockjs.tornado.proto.json_encode(json_msg)
+        combined_ideas_list = self.combine_jsons(self.ideas_list)
+        
+        self.lock.acquire()
+        if self.connection_processed < len(self.participants):
+            self.connection_processed += 1
+        else:
+            self.send(combined_ideas_list)
+        self.lock.release()
+        
+    def combine_jsons(self, jsons):
+        return sockjs.tornado.proto.json_encode(jsons)
+        
 
 if __name__ == "__main__":
     import logging
     logging.getLogger().setLevel(logging.DEBUG)
 
     # 1. Create chat router
-    ChatRouter = sockjs.tornado.SockJSRouter(ChatConnection, '/chat')
+    ChatRouter = sockjs.tornado.SockJSRouter(IdeaConnection, '/chat')
 
     # 2. Create Tornado applications
     app = tornado.web.Application(
