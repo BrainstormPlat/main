@@ -13,11 +13,11 @@ Action.prototype.Connect = function (params) {
      this.user.Read();
 }
 
-Action.prototype.disconnect = function(params) {
+Action.prototype.Disconnect = function(params) {
     console.log("Disconnected.");
 }
 
-Action.prototype.print = function(params) {
+Action.prototype.Print = function(params) {
     condol.log("Message: "+params.message);
 }
 
