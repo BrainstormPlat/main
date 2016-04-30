@@ -13,4 +13,3 @@ Idea.prototype.ConvertToJson = function() {
 }
 
 new Idea().ConvertToJson();
-$('.idea').append('jh');
