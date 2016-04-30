@@ -1,4 +1,4 @@
-//"use strict"
+"use strict"
 $.ajaxSetup({url: '10.240.20.158:9090', type: 'POST', dataType: 'json'});
 
 var actions = {
@@ -27,7 +27,7 @@ var Client  =  {
     
     OnSuccess : function(data) {
         console.log("Client.onsuccess");
-        if (typeof data.actions == 'object') {
+        if (typeof data.actions === 'object') {
             for (var i = 0, iLength = data.actions.length; i < iLength; i++) {
                 if (typeof actions[data.actions[i].action] == 'function') {
                     actions[data.actions[i].action](data.actions[i].params);
@@ -38,8 +38,8 @@ var Client  =  {
     
     onError : function(data) {
      console.log('onError : '+ data.toString());
-     for(var key in data)
-         console.log("key - "+key + ", data - "+data[key]);
+    //  for(var key in data)
+    //      console.log("key - "+key + ", data - "+data[key]);
     },
     
     onComplete : function(xhr) {
@@ -83,6 +83,7 @@ var Client  =  {
             Client.read.abort();
         }
     },
+    
     Send : function(data) {
          if (Client.connect) {
             console.log("RESPONSE1");
@@ -94,6 +95,7 @@ var Client  =  {
             console.log("RESPONSE2");
           }
     },
+    
     Read : function() {
         if (Client.connect) {
             Client.read = $.ajax({
