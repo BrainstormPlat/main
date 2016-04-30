@@ -1,4 +1,9 @@
 "use strict"
+function parse (data) {
+    for(var key in data)
+        console.log("key - "+key+" data - "+data[key]); 
+}
+
 function Client (url) {
     this.url = url;
 }
@@ -10,17 +15,12 @@ Client.prototype.connect = function(auth_json) {
     };
     socket.onmessage =  function (event) {
         var data = jQuery.parseJSON(event.data);  
-        if (data.data_type == 'data') {
-            this.parse(data); 
-        } else if (data.data_type == 'auth_error') {
+       // if (data.data_type == 'data') {
+         if (data.data_type == 'auth_error') 
             throw data.data.message;
-        }
+         else 
+            parse(data);   
     };
-}
-
-Client.prototype.parse = function(data) {
-     for(var key in data)
-            console.log("key - "+key+" data - "+data[key]); 
 }
 
 var client = new Client("http://10.240.20.158:9090/chat"); 
