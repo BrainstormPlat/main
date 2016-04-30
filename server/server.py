@@ -1,10 +1,14 @@
 ﻿import socket
-from thread import *
+from _thread import *
+
+HOST = ''
+PORT = 9090
+RECV_BUF = 1024
 
 class IdeaServer:
         def __init__(self):
                 self.socket = socket.socket()
-                self.socket.bind(('', 9090))
+                self.socket.bind((HOST, PORT))
                 self.socket.listen(10)
                 self.connections = []
 
@@ -15,20 +19,19 @@ class IdeaServer:
 
         def Listen(self, connection):
             while True:
-                message = connection.recv(1024)
-                print message
+                message = connection.recv(RECV_BUF)
                 if not message:
-                   break
-
+                    connection.close()
+                    self.connections.remove(connection)
+                    print ('Connection with {0} was aborted'.format(address))
+                    break
+				   
+                print (message)                
                 self.Broadcast(message, )
 
         def Broadcast(self, message):
                 for connection in self.connections:
-                    try:
                         connection.send(message)
-                    except:
-                        connection.close()
-                        self.connections.remove(connection)
 
 if __name__ == "__main__":
     idea_server = IdeaServer()
