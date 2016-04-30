@@ -15,6 +15,7 @@ class IdeaServer:
                 while True:
                     connection, addr = self.socket.accept()
                     self.connections.append(connection)
+                    connection.send('Access-Control-Allow-Origin : *')
                     start_new_thread(self.Listen, (connection, ))
 
         def Listen(self, connection):
@@ -27,7 +28,7 @@ class IdeaServer:
                     break
 				   
                 print (message)                
-                self.Broadcast(message, )
+                self.Broadcast(message)
 
         def Broadcast(self, message):
                 for connection in self.connections:
