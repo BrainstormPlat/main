@@ -1,7 +1,4 @@
-//$("#q").append("haha");
-/*function Main() {
-            var cx = '010883068300123991560:yplkhrsjnem';
-            var gcse = document.createElement('script');
+google.load("search", "1");
 
 function onLoad() {
   // Create a Custom Search Element that uses a
