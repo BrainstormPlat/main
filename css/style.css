@@ -119,7 +119,7 @@ nav {
       text-align: center;
       border-bottom: 1px solid #000; }
     #ideas .idea p {
-      padding: 5px;
+      padding: 5px 8px;
       margin: 0; }
     #ideas .idea .save_button {
       background: green;
@@ -134,9 +134,8 @@ nav {
       opacity: 1;
       display: flex;
       justify-content: space-around;
-      align-items: center; }
-    #ideas .idea .idea:hover .rating_container {
-      opacity: 1; }
+      align-items: center;
+      opacity: 0; }
 
 #add_idea {
   height: 60px;
@@ -158,6 +157,9 @@ nav {
 #add_idea:hover {
   box-shadow: 0 0 20px #FF00E4; }
 
+#begin_storm {
+  margin-bottom: 30px; }
+
 #add_board input {
   width: 100%;
   height: 45px;
@@ -169,6 +171,8 @@ nav {
   border: none;
   border-radius: 5px;
   outline: none; }
+#add_board .participant_cl {
+  margin-bottom: 15px; }
 #add_board h2 {
   margin-top: 40px;
   text-align: center;
@@ -187,7 +191,7 @@ nav {
   cursor: pointer;
   box-shadow: 0 5px 15px #ff0093;
   outline: none;
-  margin: 20px auto;
+  margin: 5px auto;
   transition: all 0.3s; }
 #add_board .plus_button:hover {
   box-shadow: 0 0 20px #FF00E4; }
@@ -208,6 +212,10 @@ nav {
 
 .action_button:hover {
   box-shadow: 0 0 20px #FF00E4; }
+
+#login_button {
+  padding: 4px 20px;
+  box-shadow: none; }
 
 /****** Style Star Rating Widget *****/
 .rating {

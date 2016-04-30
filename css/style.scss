@@ -140,7 +140,7 @@ nav {
             border-bottom: 1px solid #000;
         }
         p {
-            padding: 5px;
+            padding: 5px 8px;
             margin: 0;
         }
         .save_button {
@@ -158,9 +158,7 @@ nav {
             display: flex;
             justify-content: space-around;
             align-items: center;
-        }
-        .idea:hover .rating_container {
-            opacity: 1;
+            opacity: 0;
         }
     }
 }
@@ -186,7 +184,9 @@ nav {
 #add_idea:hover {
     box-shadow: 0 0 20px #FF00E4;
 }
-
+#begin_storm {
+    margin-bottom: 30px;
+}
 #add_board {
     input {
         width: 100%;
@@ -199,6 +199,9 @@ nav {
         border: none;
         border-radius: 5px;
         outline: none;
+    }
+    .participant_cl {
+        margin-bottom: 15px;
     }
     h2 {
         margin-top: 40px;
@@ -219,7 +222,7 @@ nav {
         cursor: pointer;
         box-shadow: 0 5px 15px #ff0093;
         outline: none;
-        margin: 20px auto;
+        margin: 5px auto;
         transition: all 0.3s;
     }
     .plus_button:hover {
@@ -244,6 +247,10 @@ nav {
 
 .action_button:hover {
     box-shadow: 0 0 20px #FF00E4;
+}
+#login_button {
+    padding: 4px 20px;
+    box-shadow: none;
 }
 
 

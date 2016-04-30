@@ -6,6 +6,7 @@
     <title>Brainstorm</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/grid12.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
@@ -25,8 +26,10 @@
     <nav class="navbar">
         <div class="container">
             <a href="#"><img src="template-assets/logo.png" alt=""></a>
-            <div class="user_block pull-right"><img src="template-assets/userpic.png" alt="">
-                <p>User Name</p>
+            <div class="user_block pull-right">
+                <!--<img src="template-assets/userpic.png" alt="">
+                <p>User Name</p>-->
+                <button id="login_button" class="action_button" onclick="VK.Auth.login(authInfo);"><i class="fa fa-vk" aria-hidden="true"></i> Login</button>
             </div>
         </div>
     </nav>
@@ -44,7 +47,7 @@
                         <h2>Brainstorm theme:</h2>
                         <input type="text" placeholder="Enter your theme" class="form-control" name="theme" id="theme">
                         <h2>Participants:</h2>
-                        <input type="text" placeholder="Enter participant name" class="form-control" name="name" id="pwd">
+                        <input type="text" placeholder="Enter participant name" class="form-control participant_cl" name="participant" id="participant">
                         <div style="padding: 0;" class="col-md-12">
                             <button id="add_participant" onclick="return false" class="plus_button">+</button>
                         </div>
@@ -98,7 +101,6 @@
             <button id="go_rate" onclick="return false" class="action_button">Watch results!</button>
         </div>
     </section>
-    <div id="login_button" onclick="VK.Auth.login(authInfo);">Login</div>
 </body>
 
 </html>
