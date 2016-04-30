@@ -1,39 +1,53 @@
-"use strict"
+//"use strict"
 $.ajaxSetup({url: '10.254.193.145:9090', type: 'post', dataType: 'json'});
 
-function Action() {
-    this.user = new Client();
-}
+var actions = {
+    user : new Client(),
+    Connect : function (params) {
+        console.log('Connected.');
+        console.log('Socket: '+params.socket);
+        user.socket = params.socket;
+        user.connect = true;
+        user.Read();
+   },
+   
+   Disconnect : function(params) {
+       console.log("Disconnected.");
+   },
+   
+   Print = function(params) {
+    condole.log("Message: "+params.message);
+   } 
+};
 
-Action.prototype.Connect = function (params) {
-     console.log('Connected.');
-     console.log('Socket: '+params.socket);
-     this.user.socket = params.socket;
-     this.user.connect = true;
-     this.user.Read();
-}
+// Action.prototype.Connect = function (params) {
+//      console.log('Connected.');
+//      console.log('Socket: '+params.socket);
+//      this.user.socket = params.socket;
+//      this.user.connect = true;
+//      this.user.Read();
+// }
 
-Action.prototype.Disconnect = function(params) {
-    console.log("Disconnected.");
-}
+// Action.prototype.Disconnect = function(params) {
+//     console.log("Disconnected.");
+// }
 
-Action.prototype.Print = function(params) {
-    condol.log("Message: "+params.message);
-}
+// Action.prototype.Print = function(params) {
+//     condole.log("Message: "+params.message);
+// }
 
 function Client () {
-    this.socket = null;
+    this.socket = 0;
     this.connect = false;
     this.busy = false;
-    this.read = null;
-    this.action = new Action();
+    this.read = 0;
 }
 
 Client.prototype.OnSuccess =  function(data) {
     if (typeof data.actions == 'object') {
         for (var i = 0, iLength = data.actions.length; i < iLength; i++) {
-             if (typeof this.action.prototype[data.actions[i].action] == 'function') {
-                 this.action.prototype[data.actions[i].action](data.actions[i].params);
+             if (typeof actions[data.actions[i].action] == 'function') {
+                 actions[data.actions[i].action](data.actions[i].params);
              } 
         }
     }
@@ -41,7 +55,7 @@ Client.prototype.OnSuccess =  function(data) {
                
 Client.prototype.onComplete = function(xhr) {
     if (xhr.status == 404) {
-        this.action.Disconnect();
+        actions.Disconnect();
     }
     this.busy = false;
 }     
@@ -74,7 +88,7 @@ Client.prototype.Disconnect = function() {
         success: this.OnSuccess,
         complete: this.OnComplete
         });
-        this.socket = null;
+        this.socket = 0;
         this.connect = false;
         this.read.abort();
     }
@@ -100,3 +114,5 @@ Client.prototype.Read = function() {
     }
 }               
  
+ var client  = new Client();
+ client.Send();
