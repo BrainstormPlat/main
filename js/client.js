@@ -1,5 +1,5 @@
 "use strict"
-$.ajaxSetup({url: 'server.php', type: 'post', dataType: 'json'});
+$.ajaxSetup({url: '10.254.193.145:9090', type: 'post', dataType: 'json'});
 
 function Action() {
     this.user = new Client();
