@@ -11,12 +11,12 @@ function onLoad() {
   // Set drawing options to set the root element for the
   // search form (where you have defined a div such as
   // <div id="search-form">)
-  var drawOptions = new google.search.DrawOptions();
-  //drawOptions.setSearchFormRoot('hombre');
+  //var drawOptions = new google.search.DrawOptions();
+  //drawOptions.setSearchFormRoot('searchbox');
 
   // Draw the search results in the results div
   customSearchControl.execute("haha", 1, "");
-  customSearchControl.draw('hombre'/*, drawOptions*/);
+  customSearchControl.draw('searchbox'/*, drawOptions*/);
 }
 
 google.setOnLoadCallback(onLoad);
