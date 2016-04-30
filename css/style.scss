@@ -22,7 +22,15 @@
     background: #000;
     color: #fff;
 }
-
+#searchbox {
+	position: fixed;
+	right: 30px;
+	top: 12px;
+	button {
+		border: none;
+		border-radius: 5px;
+	}
+}
 #ideas {
     padding: 15px 0;
     display: flex;
