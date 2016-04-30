@@ -15,7 +15,7 @@ function onLoad() {
   //drawOptions.setSearchFormRoot('searchbox');
 
   // Draw the search results in the results div
-  customSearchControl.execute("haha", 1, "");
+  customSearchControl.execute("haha", 1);
   customSearchControl.draw('searchbox'/*, drawOptions*/);
 }
 

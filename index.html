@@ -21,6 +21,8 @@
     <script src="js/idea.js" /></script>
     <script src="js/client.js"></script>
     <script src="js/view.js"></script>
+    <script src="js/handler.js"></script>
+    <script src="http://vk.com/js/api/openapi.js" type="text/javascript"></script>
     <script src="js/main.js"></script>
 </head>
 
@@ -98,6 +100,21 @@
             <button class="idea" id="add_idea">+</button>
         </div>
     </section>
+    <div id="login_button" onclick="VK.Auth.login(authInfo);">Login</div>
+    <script language="javascript">
+VK.init({
+  apiId: 1121
+});
+function authInfo(response) {
+  if (response.session) {
+    alert('user: '+response.session.mid);
+  } else {
+    alert('not auth');
+  }
+}
+VK.Auth.getLoginStatus(authInfo);
+VK.UI.button('login_button');
+</script>
 </body>
 
 </html>
