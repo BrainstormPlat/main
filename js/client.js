@@ -1,5 +1,5 @@
 //"use strict"
-$.ajaxSetup({url: '/10.240.20.158:9090', type: 'post', dataType: 'jsonp'});
+$.ajaxSetup({url: '10.240.20.158:9090', type: 'POST', dataType: 'json'});
 
 var actions = {
     Connect : function (params) {
@@ -26,6 +26,7 @@ var Client  =  {
     read : 0,
     
     OnSuccess : function(data) {
+        console.log("Client.onsuccess");
         if (typeof data.actions == 'object') {
             for (var i = 0, iLength = data.actions.length; i < iLength; i++) {
                 if (typeof actions[data.actions[i].action] == 'function') {
@@ -35,8 +36,10 @@ var Client  =  {
         }
     },
     
-    onError : function() {
-     console.log('onError');
+    onError : function(data) {
+     console.log('onError : '+ data.toString());
+     for(var key in data)
+         console.log("key - "+key + ", data - "+data[key]);
     },
     
     onComplete : function(xhr) {
@@ -60,7 +63,8 @@ var Client  =  {
             $.ajax({
                 data: 'action=Connect',
                 success: Client.OnSuccess,
-                complete: Client.OnComplete
+                complete: Client.OnComplete,
+                error: Client.onError
             });
         }
     },
