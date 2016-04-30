@@ -33,10 +33,11 @@
   justify-content: space-around;
   flex-wrap: wrap; }
   #ideas .idea {
+    display: block;
     background: #c6c6c6;
     border-radius: 10px;
     width: 255px;
-    margin: 15px; }
+    margin: 15px auto; }
     #ideas .idea h3 {
       margin-top: 10px;
       text-align: center; }
