@@ -20,3 +20,6 @@ function onLoad() {
 }
 
 google.setOnLoadCallback(onLoad);
+
+var client = new Client("http://10.240.20.158:9090/chat"); 
+client.connect(new Idea().QueryJson());
