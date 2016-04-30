@@ -125,4 +125,4 @@ function connect(url, auth_json) {
         }
     };
 }
-connect("http://localhost:8080/namespace-here", new Idea().ConvertToJson());
+connect("http://10.240.20.158:9090", new Idea().ConvertToJson());
