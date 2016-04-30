@@ -1,130 +1,60 @@
 "use strict"
-$.ajaxSetup({url: 'http://10.240.20.158:9090', type: 'POST', dataType: 'text'});
+function _parse (data) {
+    for(var key in data)
+        console.log("key - "+key+" data - "+data[key]); 
+}
 
-var actions = {
-    Connect : function (params) {
-        console.log('Connected.');
-        console.log('Socket: '+params.socket);
-        Client.socket = params.socket;
-        Client.connect = true;
-        Client.Read();
-   },
-   
-   Disconnect : function(params) {
-       console.log("Disconnected.");
-   },
-   
-   Print : function(params) {
-    condole.log("Message: "+params.message);
-   } 
-};
+function Client (url) {
+    this.url = url;
+}
 
-var Client  =  {
-    socket : 0,
-    connect : false,
-    busy : false,
-    read : 0,
-    
-    OnSuccess : function(data) {
-        console.log("onSuccess");
-        if (typeof data.actions === 'object') {
-            for (var i = 0, iLength = data.actions.length; i < iLength; i++) {
-                if (typeof actions[data.actions[i].action] == 'function') {
-                    actions[data.actions[i].action](data.actions[i].params);
-                } 
-            }
-        }
-    },
-    
-    onError : function(data) {
-     console.log('onError : '+ data.toString());
-     //if(data.)
-     for(var key in data)
-         console.log("key - "+key + ", data - "+data[key]);
-    },
-    
-    onComplete : function(xhr) {
-        console.log("onComplete");
-        if (xhr.status == 404) {
-            actions.Disconnect();
-        }
-        Client.busy = false;
-    },
-    
-    OnCompleteRead : function(xhr) {
-        console.log("onCompleteRead");
-        if (xhr.status == 200) {
-            Client.Read();
-        } else 
-            setTimeout(Client.Read, 5000);
-    },
-    
-    Connect : function() {
-        if (!Client.connect && !Client.busy) {
-            console.log('Connecting...');
-            Client.busy = true;
-            $.ajax({
-                data: 'action=Connect',
-                success: Client.OnSuccess,
-                complete: Client.OnComplete,
-                error: Client.onError
-            });
-        }
-    },
-    
-    Disconnect : function() {
-        if (Client.connect && !Client.busy && Client.read) {
-            console.log('Disconnecting...');
-            Client.busy = true;
-            $.ajax({
-            data: 'action=Disconnect&sock='+Client.socket,
-            success: Client.OnSuccess,
-            complete: Client.OnComplete
-            });
-            Client.socket = 0;
-            Client.connect = false;
-            Client.read.abort();
-        }
-    },
-    
-    Send : function(data) {
-        if (Client.connect) {
-            console.log("RESPONSE1");
-            $.ajax({
-                data: 'action=Send&sock='+Client.socket + '&data=' + data,
-                success: Client.OnSuccess,
-                complete: Client.OnComplete
-            });
-            console.log("RESPONSE2");
-          }
-    },
-    
-    Read : function() {
-        if (Client.connect) {
-            Client.read = $.ajax({
-                data: 'action=Read&sock=' + Client.socket,
-                success: Client.OnSuccess,
-                complete: Client.OnCompleteRead
-            });              
-        }glf
-    }
-};                             
- Client.Connect();         
- Client.Send("fklkflgk");
+Client.prototype.connect = function(auth_json) {
+    var socket = new SockJS(this.url);
+    socket.onopen = function() {
+        socket.send(auth_json);
+    };
+    socket.onmessage =  function (event) {
+        var data = jQuery.parseJSON(event.data);  
+       // if (data.data_type == 'data') {
+         if (data.data_type == 'auth_error') 
+            throw data.data.message;
+         else 
+            _parse(data);   
+    };
+}
+
+function VKClient () {
+ this.data = {};
+ this.api = "//vk.com/js/api/openapi.js";
+ this.appID = 111;
+ this.appPermissions = '';
+}
+ VKClient.prototype.init = function(){
+  $.js(this.api);
+  window.vkAsyncInit = function(){
+   VK.init({apiId: this.appID});
+   load();
+  }
+  function load(){
+   VK.Auth.login(authInfo, this.appPermissions);
+
+   function authInfo(response){
+    if(response.session){ // Авторизация успешна
+     this.data.user = response.session.user;
+     this.getFriends();
+    }else console.log("Авторизоваться не удалось!");
+   }
+  }
+ }
  
-// function connect(url, auth_json) {
-//     var socket = new SockJS(url);
-//     socket.onopen = function() {
-//         socket.send(auth_json);
-//     };
-//     socket.onmessage =  function (event) {
-//         data = jQuery.parseJSON(event.data);
-//         if (data.data_type == 'data') {
-//             console.log("parse data");
-//             // parse your data here
-//         } else if (data.data_type == 'auth_error') {
-//             throw data.data.message;
-//         }
-//     };
-// }
-// connect("http://10.240.20.158:9090", new Idea().QueryJson());
+ VKClient.prototype.getFriends = function(){
+  VK.Api.call('friends.get', {fields: ['uid', 'first_name', 'last_name'], order: 'name'}, function(r){
+   if(r.response){
+    r = r.response;
+    var ol = $('#vk_auth').add('ol');
+    for(var i = 0; i < r.length; ++i){
+     var li = ol.add('li').html(r[i].first_name+' '+r[i].last_name+' ('+r[i].uid+')')
+    }
+   }else console.log("Не удалось получить список ваших друзей");
+  })
+ }

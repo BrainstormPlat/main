@@ -9,8 +9,15 @@ function Idea() {
     this.priority = 0;
 }
 
+function Idea(_text, _description, /*optional*/ _priority) {
+    _priority = ( _priority !== undefined ) ? _priority : 0;
+    this.id = _id;
+    _id++;
+    this.text = _text;
+    this.description = _description;
+    this.priority = _priority;
+}
+
 Idea.prototype.QueryJson = function() {
     return JSON.stringify(this);
 }
-
-new Idea().QueryJson();
