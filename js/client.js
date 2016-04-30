@@ -1,5 +1,5 @@
 //"use strict"
-$.ajaxSetup({url: '/10.254.193.158:9090', type: 'post', dataType: 'jsonp'});
+$.ajaxSetup({url: '/10.240.20.158:9090', type: 'post', dataType: 'jsonp'});
 
 var actions = {
     Connect : function (params) {
@@ -54,7 +54,7 @@ var Client  =  {
     },
     
     Connect : function() {
-        if (Client.connect && Client.busy) {
+        if (!Client.connect && !Client.busy) {
             console.log('Connecting...');
             Client.busy = true;
             $.ajax({
@@ -66,7 +66,7 @@ var Client  =  {
     },
     
     Disconnect : function() {
-        if (Client.connect && Client.busy && Client.read) {
+        if (Client.connect && !Client.busy && Client.read) {
             console.log('Disconnecting...');
             Client.busy = true;
             $.ajax({
@@ -80,7 +80,7 @@ var Client  =  {
         }
     },
     Send : function(data) {
-      //   if (Client.connect) {
+         if (Client.connect) {
             console.log("RESPONSE1");
             $.ajax({
                 data: 'action=Send&sock='+Client.socket + '&data=' + data,
@@ -88,7 +88,7 @@ var Client  =  {
                 complete: Client.OnComplete
             });
             console.log("RESPONSE2");
-     //     }
+          }
     },
     Read : function() {
         if (Client.connect) {
@@ -101,5 +101,5 @@ var Client  =  {
     }
 };
                               
-            
+ Client.Connect();           
  Client.Send(new Idea().ConvertToJson());
