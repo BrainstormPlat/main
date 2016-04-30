@@ -1,6 +1,9 @@
 "use strict"
-function connect(url, auth_json) {
-    var socket = new SockJS(url);
+function Client (url) {
+    this.url = url;
+}
+Client.prototype.connect = function(auth_json) {
+    var socket = new SockJS(this.url);
     socket.onopen = function() {
         socket.send(auth_json);
     };
@@ -14,9 +17,10 @@ function connect(url, auth_json) {
     };
 }
 
-function parse(data) {
+Client.protype.parse = function(data) {
      for(var key in data)
             console.log("key - "+key+" data - "+data[key]); 
 }
 
-connect("http://10.240.20.158:9090/chat", new Idea().QueryJson());
+var client = new Client("http://10.240.20.158:9090/chat"); 
+client.connect(new Idea().QueryJson());
