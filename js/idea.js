@@ -9,8 +9,8 @@ function Idea() {
     this.priority = 0;
 }
 
-Idea.prototype.ConvertToJson = function() {
+Idea.prototype.QueryJson = function() {
     return JSON.stringify(this);
 }
 
-new Idea().ConvertToJson();
+new Idea().QueryJson();

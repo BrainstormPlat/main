@@ -11,9 +11,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script src="https://npmcdn.com/masonry-layout@4.1/dist/masonry.pkgd.min.js"></script>
+    <script src="https://npmcdn.com/draggabilly@2.1/dist/draggabilly.pkgd.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
+    <script src="js/sockjs-0.3.4.min.js"></script>
     <script src="js/idea.js" /></script>
+    <script src="js/view.js"></script>
     <script src="js/main.js"></script>
     <script src="js/client.js"></script>
 </head>
@@ -23,7 +28,7 @@
         <!--class="navbar-fixed-top"-->
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Brainstorm</a>
+                <a class="navbar-brand" href="/main">Brainstorm</a>
             </div>
             <ul class="nav navbar-nav">
                 <!--<li class="active"><a href="#">Home</a></li>
@@ -33,6 +38,28 @@
             </ul>
         </div>
     </nav>
+    <div id="searchbox">
+        <script>
+        (function() {
+            var cx = '010883068300123991560:yplkhrsjnem';
+            var gcse = document.createElement('script');
+            gcse.type = 'text/javascript';
+            gcse.async = true;
+            gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(gcse, s);
+        })();
+        </script>
+        <div style="width:0px;overflow:hidden;height:0px;">
+            <gcse:search></gcse:search>
+        </div>
+        <form id="searchbox_XXXXXXXXXX:YYYYYYYYY" action="">
+            <!--<input value="XXXXXXXXXX:YYYYYYYYY" name="cx" type="hidden"/>-->
+            <!--<input value="FORID:11" name="cof" type="hidden"/>-->
+            <input id="q" style="z-index: 5000" name="q" size="75" type="text" />
+            <button class="btn">Search</button>
+        </form>
+    </div>
     <section id="steps">
         <div class="container-fluid">
             <div id="step_1" class="step">1</div>
@@ -51,20 +78,46 @@
                     </div>
                     <div class="form-group input_container col-lg-6">
                         <label for="pwd">Участники:</label>
-                        <input type="password" placeholder="Введите имя" class="form-control" id="pwd">
+                        <input type="text" placeholder="Введите имя" class="form-control" id="pwd">
                     </div>
                 </form>
             </div>
         </div>
     </section>
     <section id="ideas" class="working_class">
-        <div class="idea">
-            <h3>header</h3>
-            <p>text</p>
-        </div>
-        <div class="idea">
-            <h3>header</h3>
-            <p>text</p>
+        <div class="container" data-masonry='{ "itemSelector": ".idea", "columnWidth": 180 }'>
+            <div class="idea">
+                <h3>header</h3>
+                <p>text</p>
+            </div>
+            <div class="idea">
+                <h3>header</h3>
+                <p>text</p>
+            </div>
+            <div class="idea">
+                <h3>header</h3>
+                <p>это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.</p>
+            </div>
+            <div class="idea">
+                <h3>header</h3>
+                <p>text</p>
+            </div>
+            <div class="idea">
+                <h3>header</h3>
+                <p>это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.</p>
+            </div>
+            <div class="idea">
+                <h3>header</h3>
+                <p>text</p>
+            </div>
+            <div class="idea">
+                <h3>header</h3>
+                <p>это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.</p>
+            </div>
+            <div class="idea">
+                <h3>header</h3>
+                <p>text</p>
+            </div>
         </div>
     </section>
 </body>
