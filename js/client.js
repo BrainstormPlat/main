@@ -62,7 +62,7 @@ Client.prototype.Connect = function() {
             success: this.OnSuccess,
             complete: this.OnComplete
         });
-    }s
+    }
 }
 
 Client.prototype.Disconnect = function() {
