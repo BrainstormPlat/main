@@ -8,10 +8,8 @@ function Idea() {
     this.priority = 0;
 }
 
-function parseToJSON(idea) {
-    var JSONstr = JSON.stringify(idea);
-    var str = JSON.parse(JSONstr);
+Idea.prototype.ConvertToJson = function() {
+    return JSON.stringify(this);
 }
 
-parseToJSON(new Idea());
-$('.idea').append('jh');
+new Idea().ConvertToJson();
