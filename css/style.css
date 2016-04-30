@@ -29,6 +29,13 @@
       margin-top: 10px;
       text-align: center; }
     #ideas .idea p {
-      padding: 10px 15px; }
+      padding: 10px 15px;
+      border: dotted 1px grey; }
+    #ideas .idea .save_button {
+      background: green;
+      color: #fff; }
+
+#add_board .input_container {
+  padding: 0; }
 
 /*# sourceMappingURL=style.css.map */
