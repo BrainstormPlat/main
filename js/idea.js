@@ -12,5 +12,3 @@ function Idea() {
 Idea.prototype.QueryJson = function() {
     return JSON.stringify(this);
 }
-
-new Idea().QueryJson();
