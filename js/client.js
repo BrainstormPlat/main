@@ -1,5 +1,5 @@
 "use strict"
-$.ajaxSetup({url: '10.240.20.158:9090', type: 'POST', dataType: 'json'});
+$.ajaxSetup({url: '/10.240.20.158:9090', type: 'POST', dataType: 'json'});
 
 var actions = {
     Connect : function (params) {
