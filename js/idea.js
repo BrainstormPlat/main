@@ -1,4 +1,4 @@
-"use strict"
+//"use strict"
 
 var _id = 0;
 function Idea() {
@@ -9,8 +9,15 @@ function Idea() {
     this.priority = 0;
 }
 
-Idea.prototype.ConvertToJson = function() {
+Idea.prototype.QueryJson = function() {
     return JSON.stringify(this);
 }
 
-new Idea().ConvertToJson();
+Idea.prototype.QueryXml = function () {
+    var xmlDoc = JXON.unbuild(this);
+    // we got our Document instance! try: alert((new XMLSerializer()).serializeToString(newDoc));
+    return xmlDoc;
+}
+
+new Idea().QueryJson();
+new Idea().QueryXml();
