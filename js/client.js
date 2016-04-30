@@ -2,6 +2,7 @@
 function Client (url) {
     this.url = url;
 }
+
 Client.prototype.connect = function(auth_json) {
     var socket = new SockJS(this.url);
     socket.onopen = function() {
@@ -17,7 +18,7 @@ Client.prototype.connect = function(auth_json) {
     };
 }
 
-Client.protype.parse = function(data) {
+Client.prototype.parse = function(data) {
      for(var key in data)
             console.log("key - "+key+" data - "+data[key]); 
 }
