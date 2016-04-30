@@ -12,9 +12,9 @@
 |*|
 \*/
 
-const JXON = new (function () {
+var JXON = new (function () {
 
-  const
+  var
     sValProp = "keyValue", sAttrProp = "keyAttributes", sAttrsPref = "@", /* you can customize these values */
     aCache = [], rIsNull = /^\s*$/, rIsBool = /^(?:true|false)$/i;
 
@@ -33,12 +33,12 @@ const JXON = new (function () {
   EmptyTree.prototype.valueOf = function () { return null; };
 
   function objectify (vVal) {
-    return vVal === null ? new EmptyTree() : vVal instanceof Object ? vVal : new vVal.constructor(vVal);
+    return vVal === null ? new EmptyTree() : vVal instanceof Object ? vVal : new vVal.varructor(vVal);
   }
 
   function createObjTree (oParentNode, nVerb, bFreeze, bNesteAttr) {
 
-    const
+    var
       nLevelStart = aCache.length, bChildren = oParentNode.hasChildNodes(),
       bAttributes = oParentNode.hasAttributes && oParentNode.hasAttributes(), bHighVerb = Boolean(nVerb & 2);
 
@@ -55,7 +55,7 @@ const JXON = new (function () {
       }
     }
 
-    const nLevelEnd = aCache.length, vBuiltVal = parseText(sCollectedTxt);
+    var nLevelEnd = aCache.length, vBuiltVal = parseText(sCollectedTxt);
 
     if (!bHighVerb && (bChildren || bAttributes)) { vResult = nVerb === 0 ? objectify(vBuiltVal) : {}; }
 
@@ -63,7 +63,7 @@ const JXON = new (function () {
       sProp = aCache[nElId].nodeName.toLowerCase();
       vContent = createObjTree(aCache[nElId], nVerb, bFreeze, bNesteAttr);
       if (vResult.hasOwnProperty(sProp)) {
-        if (vResult[sProp].constructor !== Array) { vResult[sProp] = [vResult[sProp]]; }
+        if (vResult[sProp].varructor !== Array) { vResult[sProp] = [vResult[sProp]]; }
         vResult[sProp].push(vContent);
       } else {
         vResult[sProp] = vContent;
@@ -73,7 +73,7 @@ const JXON = new (function () {
 
     if (bAttributes) {
 
-      const
+      var
         nAttrLen = oParentNode.attributes.length,
         sAPrefix = bNesteAttr ? "" : sAttrsPref, oAttrParent = bNesteAttr ? {} : vResult;
 
@@ -108,10 +108,10 @@ const JXON = new (function () {
 
     var vValue, oChild;
 
-    if (oParentObj.constructor === String || oParentObj.constructor === Number || oParentObj.constructor === Boolean) {
+    if (oParentObj.varructor === String || oParentObj.varructor === Number || oParentObj.varructor === Boolean) {
       oParentEl.appendChild(oXMLDoc.createTextNode(oParentObj.toString())); /* verbosity level is 0 or 1 */
       if (oParentObj === oParentObj.valueOf()) { return; }
-    } else if (oParentObj.constructor === Date) {
+    } else if (oParentObj.varructor === Date) {
       oParentEl.appendChild(oXMLDoc.createTextNode(oParentObj.toGMTString()));
     }
 
@@ -119,12 +119,12 @@ const JXON = new (function () {
       vValue = oParentObj[sName];
       if (isFinite(sName) || vValue instanceof Function) { continue; } /* verbosity level is 0 */
       if (sName === sValProp) {
-        if (vValue !== null && vValue !== true) { oParentEl.appendChild(oXMLDoc.createTextNode(vValue.constructor === Date ? vValue.toGMTString() : String(vValue))); }
+        if (vValue !== null && vValue !== true) { oParentEl.appendChild(oXMLDoc.createTextNode(vValue.varructor === Date ? vValue.toGMTString() : String(vValue))); }
       } else if (sName === sAttrProp) { /* verbosity level is 3 */
         for (var sAttrib in vValue) { oParentEl.setAttribute(sAttrib, vValue[sAttrib]); }
       } else if (sName.charAt(0) === sAttrsPref) {
         oParentEl.setAttribute(sName.slice(1), vValue);
-      } else if (vValue.constructor === Array) {
+      } else if (vValue.varructor === Array) {
         for (var nItem = 0; nItem < vValue.length; nItem++) {
           oChild = oXMLDoc.createElement(sName);
           loadObjTree(oXMLDoc, oChild, vValue[nItem]);
@@ -153,12 +153,12 @@ const JXON = new (function () {
 
 
   this.build = function (oXMLParent, nVerbosity /* optional */, bFreeze /* optional */, bNesteAttributes /* optional */) {
-    const nVerbMask = arguments.length > 1 && typeof nVerbosity === "number" ? nVerbosity & 3 : /* put here the default verbosity level: */ 1;
+    var nVerbMask = arguments.length > 1 && typeof nVerbosity === "number" ? nVerbosity & 3 : /* put here the default verbosity level: */ 1;
     return createObjTree(oXMLParent, nVerbMask, bFreeze || false, arguments.length > 3 ? bNesteAttributes : nVerbMask === 3);
   };
 
   this.unbuild = function (oObjTree, sNamespaceURI /* optional */, sQualifiedName /* optional */, oDocumentType /* optional */) {
-    const oNewDoc = document.implementation.createDocument(sNamespaceURI || null, sQualifiedName || "", oDocumentType || null);
+    var oNewDoc = document.implementation.createDocument(sNamespaceURI || null, sQualifiedName || "", oDocumentType || null);
     loadObjTree(oNewDoc, oNewDoc, oObjTree);
     return oNewDoc;
   };
