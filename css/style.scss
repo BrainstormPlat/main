@@ -37,10 +37,11 @@
     justify-content: space-around;
     flex-wrap: wrap;
     .idea {
+    	display: block;
         background: #c6c6c6;
         border-radius: 10px;
         width: 255px;
-        margin: 15px;
+        margin: 15px auto;
         h3 {
             margin-top: 10px;
             text-align: center;
