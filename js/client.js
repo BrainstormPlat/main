@@ -1,5 +1,5 @@
 "use strict"
-function parse (data) {
+function _parse (data) {
     for(var key in data)
         console.log("key - "+key+" data - "+data[key]); 
 }
@@ -19,9 +19,14 @@ Client.prototype.connect = function(auth_json) {
          if (data.data_type == 'auth_error') 
             throw data.data.message;
          else 
-            parse(data);   
+            _parse(data);   
     };
 }
+function authInfo(response) {
+  if (response.session) {
+    alert('user: '+response.session.mid);
+  } else {
+    alert('not auth');
+  }
+}
 
-var client = new Client("http://10.240.20.158:9090/chat"); 
-client.connect(new Idea().QueryJson());

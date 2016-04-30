@@ -1,5 +1,5 @@
 google.load("search", "1");
-
+//google
 function onLoad() {
   // Create a Custom Search Element that uses a
   // Custom Search Engine restricted to code.google.com.
@@ -15,8 +15,18 @@ function onLoad() {
   //drawOptions.setSearchFormRoot('searchbox');
 
   // Draw the search results in the results div
-  customSearchControl.execute("haha", 1, "");
+  customSearchControl.execute("haha", 1);
   customSearchControl.draw('searchbox'/*, drawOptions*/);
 }
 
 google.setOnLoadCallback(onLoad);
+
+//client
+var client = new Client("http://10.240.20.158:9090/chat"); 
+client.connect(new Idea().QueryJson());
+VK.init({
+  apiId: 1121
+});
+
+VK.Auth.getLoginStatus(authInfo);
+VK.UI.button('login_button');
