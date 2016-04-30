@@ -1,5 +1,5 @@
 ﻿import socket
-from threading import Thread
+from thread import *
 
 class IdeaServer:
         def __init__(self):
@@ -10,20 +10,25 @@ class IdeaServer:
 
                 while True:
                     connection, addr = self.socket.accept()
-                    self.connections.append((connection, address))
-                    start_new_thread(self.Listen, connection)
+                    self.connections.append(connection)
+                    start_new_thread(self.Listen, (connection, ))
 
         def Listen(self, connection):
             while True:
                 message = connection.recv(1024)
+                print message
                 if not message:
                    break
 
-                self.Broadcast(message)
+                self.Broadcast(message, )
 
         def Broadcast(self, message):
                 for connection in self.connections:
-                    connection.send(message)
+                    try:
+                        connection.send(message)
+                    except:
+                        connection.close()
+                        self.connections.remove(connection)
 
 if __name__ == "__main__":
     idea_server = IdeaServer()
