@@ -49,7 +49,7 @@ Handler.prototype.Start = function() {
 }
 
 Handler.prototype.UpdateRatings = function(_idea_id, tmp) {
-    ideaMap[_idea_id].rating = tmp;
-    console.log(_idea_id);
+    this.client.ideas[_idea_id].rating = tmp;
+    console.log(this.client.ideas[_idea_id].rating);
     console.log(tmp);
 }

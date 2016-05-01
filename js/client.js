@@ -20,7 +20,7 @@ Client.prototype.connect = function(auth_json) {
              var t = '{"id":"ideas_list", "content":{';
              t += '"idea":"'+this.ideas[1]+'"';
             for (var i = 2, le = Object.keys(this.ideas).length; i < le; i++) {
-             t += ', "ideat":"'+this.ideas[i]+'"';
+             t += ', "idea":"'+this.ideas[i]+'"';
             }
             t += '}}';
            this.connect(t);  
@@ -30,7 +30,7 @@ Client.prototype.connect = function(auth_json) {
             var ideas = data.content;
             this.ideas = JSON.parse(ideas);
             for(var key in ideas)
-                drawIdea(ideas[key].text, ideas[key].description, ideas[key].raiting);
+                drawIdea(ideas[key].text, ideas[key].description, ideas[key].rating);
          }
          _parse(data);   
     };
