@@ -82,10 +82,13 @@ $(document).ready(function() {
     $('.idea').mouseleave(function() {
         $('.rating_container').css('opacity', '0');
     });
-    $('#begin_storm').click(function() {
+    $('#register').click(function() {
         h.UpdateMainForm($('#main_form').serialize());
     });
     $('#add_user').click(function() {
-        h.Authenticate($('#user_name').val());
+        h.Authenticate($('#username').val());
     });
+    $('#begin_storm').click(function() {
+        h.Start();
+    })
 });
