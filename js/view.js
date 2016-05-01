@@ -112,6 +112,7 @@ $(document).ready(function() {
         $('#ideas').fadeIn();
         $('.user_block').hide();
         $('#step_2').addClass('active_step');
+        $('#go_from_3').hide();
     });
     $('#add_user').click(function() {
         h.Authenticate($('#username').val());
@@ -125,6 +126,7 @@ $(document).ready(function() {
         $('#ideas').fadeIn();
         $('.user_block').hide();
         $('#step_2').addClass('active_step');
+        $('#go_from_3').hide();
     });
     $('.rating').change(function() {
         var tmp = $('.rating').val();
