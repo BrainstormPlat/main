@@ -24,11 +24,15 @@ Handler.prototype.ReceiveFromServer = function(received_str) {
 }
 
 //Common stuff
-Handler.prototype.UpdateTheme = function(_theme) {
-    this.theme = _theme;
+Handler.prototype.UpdateMainForm = function(_object) {
+    var array = _object.split("&");
+    this.theme = (array[0].split("="))[1];
+    for (var i = 1, l = array.length; i < l; i++) {
+        this.participants[i] = (array[i].split("="))[1];
+    }
+    /*console.log(this.theme);
+    for (var k in this.participants) {
+        console.log(this.participants[k]);
+    }*/
     //console.log(this.theme);
-}
-
-Handler.prototype.AddUser = function(_p) {
-    this.participants.push(_p);
 }

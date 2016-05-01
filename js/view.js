@@ -6,7 +6,7 @@ $(document).ready(function() {
     $('#ideas').hide();
     $('.idea').draggabilly({});
     $('#add_participant').click(function () {
-        $('#participant').after('<input type="text" placeholder="Enter participant name" class="form-control participant_cl">');
+        $('#participant').after('<input type="text" placeholder="Enter participant name" class="form-control participant_cl" name="participant">');
     })
     $(".idea p, .idea h3").click(function() {
         $(this).attr('contenteditable', 'true');
@@ -54,6 +54,6 @@ $(document).ready(function() {
         $('.rating_container').css('opacity', '0');
     });
     $("#begin_storm").click(function() {
-        h.UpdateTheme($("#theme").val());
+        h.UpdateMainForm($("#main_form").serialize());
     });
 });
