@@ -78,6 +78,6 @@ $(document).ready(function() {
         h.UpdateMainForm($('#main_form').serialize());
     });
     $('#add_user').click(function() {
-        
+        h.Authenticate($('#user_name').val());
     });
 });
