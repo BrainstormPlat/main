@@ -25,13 +25,18 @@ function drawIdea (self, idea, description) {
    indexIdea++;     
    $(ideaSelf).before(idea);
    $('.idea').draggabilly({});
-   $('.rating').hide();     
+   $('.rating').hide();  
+   $('.rating').change(function() {
+        var tmp = $('.rating').val();
+        //console.log(tmp);
+        h.UpdateRatings($('.rating').parent.id, tmp);
+    });   
    $('.ok_idea').click(function() {
         var id = $(this).parent().attr('id');
         var idea = $("#"+id +" h3").text();
         var description = $("#"+id +" p").text();
         console.log('id - '+id);
-  h.UpdateIdea(new Idea(id,idea,description,5));     
+  h.UpdateIdea(new Idea(id,idea,description,5));
  });   
 }
 
@@ -125,13 +130,7 @@ $(document).ready(function() {
         $('.user_block').hide();
         $('#step_2').addClass('active_step');
         $('#go_from_3').hide();
-    });
-    $('.rating').change(function() {
-        var tmp = $('.rating').val();
-        //console.log(tmp);
-        h.UpdateRatings($('.rating').parent.id, tmp);
-    });
-    
+    });    
     $('.ok_idea').click(function() {
         var id = $(this).parent().attr('id');
         var idea = $("#"+id +" h3").text();
