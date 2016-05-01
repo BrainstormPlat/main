@@ -8,6 +8,7 @@ function Handler() {
 }
 
 Handler.prototype.UpdateIdea = function(_idea) {//common api to add/update idea
+    console.log('idea');
     this.client.ideas[_idea.id] = _idea;
 }
 

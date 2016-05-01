@@ -1,7 +1,11 @@
 "use strict"
 function _parse (data) {
     for(var key in data)
-        console.log("key - "+key+" data - "+data[key]); 
+    {
+        console.log("key - "+key+" data - "+data[key]);
+        for( var key1 in data[key])
+        console.log("key1 - "+key+" data - "+data[key][key1]);
+    } 
 }
 
 function Client (url) {
@@ -19,8 +23,13 @@ Client.prototype.connect = function(auth_json) {
         _parse(data);    
          if(data.id === "time_exceeded") {
              var t = '{"id":"ideas_list", "content":{';
+            console.log('length - '+Object.keys(this.ideas).length);
             for (var key in this.ideas) {
-             t += ' "idea":"'+this.ideas[key]+'",';
+             t += ' "idea":"';
+             for(var key1 in ideas[key]) {
+              t += '{"'+ key1+'"'+'"' +this.ideas[key]+ '}",';
+             }
+             t += '},';
             } 
             t = t.replace(',}}','}}');     
             t += '}}';
