@@ -1,12 +1,14 @@
 //some events
 var h = new Handler();
 var indexIdea = 0;
-function drawIdea (self,header, text) {
-    console.log("drawIdea");
+var ideaMap = {};
+function drawIdea (self,idea, description) {
+    idea = (idea === undefined) ? 'idea' : idea;
+    description = (description === undefined) ? 'description' : description;
     var idea =
-        '<div class="idea id=' + indexIdea + '">' +
-        '<h3 contenteditable="true">' + header + '</h3>' +
-        '<p contenteditable="true">' + text + '</p>' +
+        '<div class="idea"  id=idea_' + indexIdea + '>' +
+        '<h3 contenteditable="true">' + idea + '</h3>' +
+        '<p contenteditable="true">' + description + '</p>' +
         '<button class="ok_idea"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>' +
         '<select class="rating">' +
         '<option value="1">5</option>' +
@@ -16,9 +18,17 @@ function drawIdea (self,header, text) {
         '<option value="5">1</option>' +
         '</select>' +
         '</div>';
+   indexIdea++;     
    $(self).before(idea);
    $('.idea').draggabilly({});
-   $('.rating').hide();        
+   $('.rating').hide();     
+   $('.ok_idea').click(function() {
+        var id = $(this).parent().attr('id');
+        var idea = $("#"+id +" h3").text();
+        var description = $("#"+id +" p").text();
+        console.log(id);
+   ideaMap[id] = new Idea(id,idea,description,5);
+    });   
 }
 
 $(document).ready(function() {
@@ -67,7 +77,7 @@ $('.user_block').show();
     });
     $('#add_idea').click(function() {
        var self = this;
-       drawIdea(self,"","");        
+       drawIdea(self,"idea","description");        
         /*$('#ideas').masonry({
             // options
             itemSelector: '.idea',
@@ -94,5 +104,8 @@ $('.user_block').show();
         var tmp = $('.rating').val();
         console.log(tmp);
         //h.UpdateRatings(tmp);
+    });
+    $('.ok_idea').click(function() {
+        console.log($(this).parent().id);
     });
 });
