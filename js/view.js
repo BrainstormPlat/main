@@ -39,6 +39,7 @@ function drawIdea (self, idea, description) {
 
 $(document).ready(function() {
     $('#ideas').hide();
+    $('#results').hide();
     $('.idea').draggabilly({});
     $('#add_participant').click(function() {
             $('#participant').after('<input type="text" placeholder="Enter participant name" class="form-control participant_cl" name="participant">');
@@ -89,8 +90,7 @@ $(document).ready(function() {
             itemSelector: '.idea',
             columnWidth: 200
         });*/
-    });
-    
+    });    
     $('.idea').mouseover(function() {
         $('.rating_container').css('opacity', '1');
     });
@@ -135,5 +135,24 @@ $(document).ready(function() {
     });
     $('.idea h3,.idea p').click(function() {
         $(this).focus();
+    });
+    $('#go_from_2').click(function () {
+        $('.step').removeClass('active_step');
+        $('.rating_container').css('display', 'none');
+        $('.working_class').hide();
+        $('.rating').hide();
+        $('#ideas').fadeIn();
+        $('.user_block').hide();
+        $('#step_3').addClass('active_step');
+    });
+    $('#go_from_3').click(function () {
+        $('.step').removeClass('active_step');
+        $('.rating_container').css('display', 'flex');
+        $('.working_class').hide();
+        $('.rating').show();
+        $('.rating').prop( "disabled", false );
+        $('#ideas').fadeIn();
+        $('.user_block').hide();
+        $('#step_4').addClass('active_step');
     });
 });
