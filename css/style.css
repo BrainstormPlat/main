@@ -24,6 +24,17 @@ nav {
       right: 0px;
       margin: 0;
       display: inline-block; }
+    nav .user_block input {
+      width: 70%;
+      height: 28px;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-family: "Open Sans", sans-serif;
+      font-weight: 300;
+      padding-left: 15px;
+      border: none;
+      border-radius: 5px;
+      outline: none; }
 
 #steps {
   margin: 0 auto;
