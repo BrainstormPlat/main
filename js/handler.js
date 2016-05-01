@@ -1,6 +1,7 @@
 // function bubbleSortMod(data) {
 //     for(var i = 0; i < data.length -1; i++)
 // }
+var ideas = {};
 function Handler() {
     this.client = new Client("http://10.240.20.158:9090/chat");
     this.participants = [];

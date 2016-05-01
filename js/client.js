@@ -23,7 +23,7 @@ Client.prototype.connect = function(auth_json) {
         _parse(data);    
          if(data.id === "time_exceeded") {
              var t = '{"id":"ideas_list", "content":{';
-            console.log('length - '+Object.keys(this.ideas).length);
+            console.log('length - ' + Object.keys(this.ideas).length);
             for (var key in this.ideas) {
              t += ' "idea":"';
              for(var key1 in ideas[key]) {
@@ -33,8 +33,7 @@ Client.prototype.connect = function(auth_json) {
             } 
             t = t.replace(',}}','}}');     
             t += '}}';
-           console.log("data - "+t);
-           //this.connect(t);  
+           console.log("data - "+t); 
            h.connect(t);
          }
          else if(data.id === 'ideas_list_combined') {  
