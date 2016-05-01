@@ -5,22 +5,25 @@ var ideaMap = {};
 function deleteIdeas() {
     $('.idea').remove();
 }
-function drawIdea (self,idea, description) {
+function drawIdea (self, idea, description) {
     idea = (idea === undefined) ? 'idea' : idea;
     description = (description === undefined) ? 'description' : description;
     var idea =
         '<div class="idea"  id=idea_' + indexIdea + '>' +
         '<h3 contenteditable="true">' + idea + '</h3>' +
         '<p contenteditable="true">' + description + '</p>' +
-        '<button class="ok_idea"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>' +
+        '<button class="ok_idea"><i class="fa fa-check-circle-o" area-hidden="true"></i></button>' +
         '<select class="rating">' +
-        '<option value="1">5</option>' +
-        '<option value="2">4</option>' +
+        '<option value="5">5</option>' +
+        '<option value="4">4</option>' +
         '<option value="3">3</option>' +
-        '<option value="4">2</option>' +
-        '<option value="5">1</option>' +
+        '<option value="2">2</option>' +
+        '<option value="1">1</option>' +
         '</select>' +
         '</div>';
+        $('this h3,this p').click(function() {
+            this.focus();
+        });
    indexIdea++;     
    $(self).before(idea);
    $('.idea').draggabilly({});
