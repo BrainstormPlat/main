@@ -30,7 +30,7 @@ Client.prototype.connect = function(auth_json) {
             var ideas = data.content;
             this.ideas = JSON.parse(ideas);
             for(var key in ideas)
-                drawIdea(ideas[key].text, ideas[key].description, ideas[key].raiting);
+                drawIdea(ideas[key].text, ideas[key].description, ideas[key].rating);
          }
          _parse(data);   
     };
