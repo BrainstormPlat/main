@@ -6,6 +6,7 @@ function _parse (data) {
 
 function Client (url) {
     this.url = url;
+    this.participants = {};
 }
 
 Client.prototype.connect = function(auth_json) {
@@ -15,13 +16,16 @@ Client.prototype.connect = function(auth_json) {
     };
     socket.onmessage =  function (event) {
         var data = jQuery.parseJSON(event.data);  
-       // if (data.data_type == 'data') {
-         if (data.data_type == 'auth_error') 
-            throw data.data.message;
-         else 
-            _parse(data);   
+         if(data.id === "timer_exceeded")
+           this.connect(this.participants);  
+         _parse(data);   
     };
 }
+
+Client.prototype.setParticipants = function(data) {
+    this.participants = data;
+}
+
 function authInfo(response) {
   console.log("authentification info");
   if (response.session) {
