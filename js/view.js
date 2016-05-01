@@ -2,6 +2,7 @@
 var h = new Handler();
 var indexIdea = 1;
 var ideaMap = {};
+var ideaSelf;
 function deleteIdeas() {
     $('.idea').remove();
 }
@@ -22,14 +23,14 @@ function drawIdea (self, idea, description) {
         '</select>' +
         '</div>';
         $('this h3,this p').click(function() {
-            this.focus();
+            ideaSelf.focus();
         });
    indexIdea++;     
-   $(self).before(idea);
+   $(ideaSelf).before(idea);
    $('.idea').draggabilly({});
    $('.rating').hide();     
    $('.ok_idea').click(function() {
-        var id = $(this).parent().attr('id');
+        var id = $(ideaSelf).parent().attr('id');
         var idea = $("#"+id +" h3").text();
         var description = $("#"+id +" p").text();
         console.log(id);
@@ -89,7 +90,7 @@ $(document).ready(function() {
         $('#go_from_3').hide();
     });
     $('#add_idea').click(function() {
-       var self = this;
+       ideaSelf = this;
        drawIdea(self,"idea","description");        
         /*$('#ideas').masonry({
             // options
