@@ -83,8 +83,8 @@ $('.user_block').show();
         h.Start();
     });
     $('.rating').click(function() {
-        var tmp = $('.rating').serialize();
+        var tmp = $('.rating').val();
         console.log(tmp);
-        h.UpdateRatings(tmp);
-    });    
+        //h.UpdateRatings(tmp);
+    });
 });
