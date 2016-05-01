@@ -22,22 +22,22 @@ Client.prototype.connect = function(auth_json) {
         var data = jQuery.parseJSON(event.data); 
         _parse(data);    
          if(data.id === "time_exceeded") {
-             var t = '{"id":"ideas_list", "content":{';
-            console.log('length - '+Object.keys(this.ideas).length);
-            for (var key in this.ideas) {
-             t += ' "idea":"';
-             for(var key1 in ideas[key]) {
-              t += '{"'+ key1+'"'+'"' +this.ideas[key]+ '}",';
-             }
-             t += '},';
-            } 
-            t = t.replace(',}}','}}');     
-            t += '}}';
-           console.log("data - "+t);
+            var t = '{"id":"ideas_list", "content":{';
+         //console.log('length - '+Object.keys(this.ideas).length);
+            var i = 0;
+            t += '"idea'+i+'":{';
+            t += this.ideas[0].id+','+this.ideas[0].text+','+this.ideas[0].description+','+this.ideas[0].rating;
+            t += '}';
+            for (var k = 1, l = this.ideas.keys.length; i < l; i++) {
+                t += ', "idea"'+k+':{'+this.ideas[0].id+','+this.ideas[0].text+','+this.ideas[0].description+','+this.ideas[0].rating;
+                t += '}';
+            }
+            t += '}';
+            console.log("data - "+t);
            //this.connect(t);  
-           h.connect(t);
+            h.connect(t);
          }
-         else if(data.id === 'ideas_list_combined') {  
+         if(data.id === 'ideas_list_combined') {  
             deleteIdeas();
             var ideas = data.content;
             this.ideas = JSON.parse(ideas);
