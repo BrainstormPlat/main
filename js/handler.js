@@ -37,8 +37,15 @@ Handler.prototype.UpdateMainForm = function(_object) {
         console.log(this.participants[k]);
     }*/
     //console.log(this.theme);
+    var t = '{ "id":"participants_list"';
+    for (var k in this.participants) {
+        t += ', "participant":"'+this.participants[k]+'"';
+    }
+    t += '}';
+    console.log(t);
+    this.client.connect(JSON.stringify(this.participants));
 }
 
 Handler.prototype.Authenticate = function(_user) {
-    this.client.connect(JSON.stringify(_user));
+    this.client.connect('{"id":"new_user", "name":"'+_user+'"}');
 }
