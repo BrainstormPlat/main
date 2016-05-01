@@ -14,77 +14,65 @@ class IndexHandler(tornado.web.RequestHandler):
     def get(self):
         self.render('index.html')
 
-#count for one room
 class IdeaConnection(sockjs.tornado.SockJSConnection):
-    # Class level variable
-	owner = None
-	chat_rooms = dict()
+    
+	# Class level variable
     participants = set()
-	handlers = []
-    #lock = allocate_lock()
+    lock = allocate_lock()
 
+	def _init_(self):
+		self.room = IdeaRoom()
+		self.owner_name = ''
+		self.shit_code_sent = False
+		
     def on_open(self, info):
         # Send that someone joined
-        self.broadcast(self.participants, "Someone joined.")
-
+        self.broadcast(IdeaConnection.participants, "Someone joined.")
         # Add client to the clients list
-        self.participants.add(self)
+        IdeaConnection.participants.add(self)
 
     def on_message(self, message):
         #Process message
         print(message)
-        start_new_thread(self.process_message, (message, ))
+        start_new_thread(self.process_message, (message, ))     
         
-        
-    def on_close(self):
+    def on_close(self):	
         # Remove client from the clients list and broadcast leave message
-        self.participants.remove(self)
-		#remove from all participants lists e.t.c.
-        self.broadcast(self.participants, "Someone left.")
-    
-	def broadcast_room(self, room, message):
-		self.broadcast(room.participants, message)
-		
+        IdeaConnection.participants.remove(self)
+		self.room_participants.pop(self)
+        #remove from all participants lists e.t.c.
+		json_msg = {'ID' : 'GONE_USER', 'name' : self.owner_name}
+		message = sockjs.tornado.proto.json_decode(json_msg)
+        self.broadcast(IdeaConnection.participants, message)
+          
     def process_message(self, message):
         json_msg = sockjs.tornado.proto.json_decode(message)
-		if json_msg['ID'] == 'USER_AUTHORIZED':
-			pass
-		else if json_msg['ID'] == 'PARTICIPANTS_LIST':
-		
-			chat_room = IdeaRoomConnection()
-			chat_rooms.append({self.session.conn_info.ip : chat_room})
-			for ip, name in json_msg['participants
-			'].iteritems():
-				for participant in self.participants:
-					if ip == participant.session.conn_info.ip:
-						chat_room.add_participant(participant)
-					    break
-			self.broadcast_room(chat_room, self.session.conn_info.ip + 'invited you')
-		else:
-			json_msg['ID'] == 'IDEAS_LIST':
-				#idea from one room
-			#ideas_list.append(json_msg)
-			#json_msg['source'] = self.session.conn_info.ip
-			#message = sockjs.tornado.proto.json_encode(json_msg)
-			#combined_ideas_list = sockjs.tornado.proto.json_encode(ideas_list)
+		if json_msg['id'] == 'new_user':			
+		    self.owner_name = json_msg['name']
+			self.broadcast(IdeaConnection.participants, message)
+		else if json_msg['id'] == 'participants_list':
+			self.room_participants = []
+			for name in json_msg['content']:
+				for participant in IdeaConnection.participants:
+					if name == participant.owner_name and owner_name != ''
+						room.append(participant)
+						break
+			room.append(self)		
+			self.broadcast(self.room_participants, self.session.conn_info.ip + 'invited you')
+        else if json_msg['id'] == 'ideas_list':
+            ideas_list.append(json_msg['content'])
+            combined_ideas_list = sockjs.tornado.proto.json_encode(ideas_list)
         
-			#self.lock.acquire()
-			#if self.connection_processed < len(self.expected_count):
-			#    self.connection_processed += 1
-			#else:
-			#    self.send(combined_ideas_list)
-			#self.lock.release()
+            self.lock.acquire()
+            if self.connection_processed < len(self.room_participants):
+                self.connection_processed += 1
+            else:
+                self.broadcast(self.room_participants, combined_ideas_list)
+            self.lock.release()
+			
+class IdeaRoom:
+	participanst = []
         
-class IdeaRoomConnection:	
-	IdeaConnection connection
-	participants = []
-	
-	def _init_(self):
-		pass
-
-	def add_participant(self, participant):
-		participants.append(participant)
-
 if __name__ == "__main__":
     import logging
     logging.getLogger().setLevel(logging.DEBUG)
