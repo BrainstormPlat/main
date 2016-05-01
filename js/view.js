@@ -1,18 +1,25 @@
 //some events
 var h = new Handler();
-var drawIdea =
-    '<div class="idea">' +
-    '<h3 contenteditable="true">header</h3>' +
-    '<p contenteditable="true">text</p>' +
-    '<button class="ok_idea"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>' +
-    '<select class="rating">' +
-    '<option value="1">5</option>' +
-    '<option value="2">4</option>' +
-    '<option value="3">3</option>' +
-    '<option value="4">2</option>' +
-    '<option value="5">1</option>' +
-    '</select>' +
-    '</div>';
+var indexIdea = 0;
+function drawIdea (self,header, text) {
+    console.log("drawIdea");
+    var idea =
+        '<div class="idea id=' + indexIdea + '">' +
+        '<h3 contenteditable="true">' + header + '</h3>' +
+        '<p contenteditable="true">' + text + '</p>' +
+        '<button class="ok_idea"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>' +
+        '<select class="rating">' +
+        '<option value="1">5</option>' +
+        '<option value="2">4</option>' +
+        '<option value="3">3</option>' +
+        '<option value="4">2</option>' +
+        '<option value="5">1</option>' +
+        '</select>' +
+        '</div>';
+   $(self).before(idea);
+   $('.idea').draggabilly({});
+   $('.rating').hide();        
+}
 
 $(document).ready(function() {
     $('#ideas').hide();
@@ -55,14 +62,15 @@ $(document).ready(function() {
         $(this).addClass('active_step');
     });
     $('#add_idea').click(function() {
-        $(this).before(drawIdea);
-        $('.idea').draggabilly({});
+       var self = this;
+       drawIdea(self,"","");        
         /*$('#ideas').masonry({
             // options
             itemSelector: '.idea',
             columnWidth: 200
         });*/
     });
+    
     $('.idea').mouseover(function() {
         $('.rating_container').css('opacity', '1');
     });
