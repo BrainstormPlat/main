@@ -77,5 +77,10 @@ $(document).ready(function() {
     });
     $('#begin_storm').click(function() {
         h.Start();
-    })
+    });
+    $('.rating').click(function() {
+        var tmp = $('.rating').serialize();
+        console.log(tmp);
+        h.UpdateRatings(tmp);
+    });    
 });
