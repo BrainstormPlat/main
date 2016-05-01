@@ -1,7 +1,10 @@
 //some events
 var h = new Handler();
-var indexIdea = 0;
+var indexIdea = 1;
 var ideaMap = {};
+function deleteIdeas() {
+    $('.idea').remove();
+}
 function drawIdea (self,idea, description) {
     idea = (idea === undefined) ? 'idea' : idea;
     description = (description === undefined) ? 'description' : description;
