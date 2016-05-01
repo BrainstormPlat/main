@@ -43,3 +43,7 @@ Handler.prototype.UpdateMainForm = function(_object) {
 Handler.prototype.Authenticate = function(_user) {
     this.client.connect('{"id":"new_user", "name":"'+_user+'"}');
 }
+
+Handler.prototype.Start = function() {
+    this.client.connect('{"id":"joined"}');
+}
