@@ -19,11 +19,6 @@ Handler.prototype.SendToServer = function() {
     sent_str += "}";
 }
 
-Handler.prototype.ReceiveFromServer = function(received_str) {
-    //received_str = JSON.parse(received_str)
-    this.ideas = JSON.parse(received_str);
-}
-
 //Common stuff
 Handler.prototype.UpdateMainForm = function(_object) {
     var array = _object.split("&");
