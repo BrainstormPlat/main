@@ -19,7 +19,7 @@ Client.prototype.connect = function(auth_json) {
         _parse(data);    
          if(data.id === "time_exceeded") {
              var t = '{"id":"ideas_list", "content":{';
-            for (var key in ideas) {
+            for (var key in this.ideas) {
              t += ' "idea":"'+this.ideas[key]+'",';
             }      
             t += '}}';
