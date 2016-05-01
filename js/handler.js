@@ -1,6 +1,5 @@
 function Handler() {
     this.client = new Client("http://10.240.20.158:9090/chat");
-    
     this.ideas = {};
     this.participants = [];
 }
@@ -38,6 +37,7 @@ Handler.prototype.UpdateMainForm = function(_object) {
         t += ', "participant":"'+this.participants[i]+'"';
     }
     t += '}}';
+    this.client.setParticipants(t);
 }
 
 Handler.prototype.Authenticate = function(_user) {
