@@ -14,13 +14,14 @@ class IndexHandler(tornado.web.RequestHandler):
     def get(self):
         self.render('index.html')
 
-
+#count for one room
 class IdeaConnection(sockjs.tornado.SockJSConnection):
     # Class level variable
+	owner = None
+	chat_rooms = dict()
     participants = set()
-    ideas_list = []
-    connection_processed = 0
-    lock = allocate_lock()
+	handlers = []
+    #lock = allocate_lock()
 
     def on_open(self, info):
         # Send that someone joined
@@ -38,25 +39,51 @@ class IdeaConnection(sockjs.tornado.SockJSConnection):
     def on_close(self):
         # Remove client from the clients list and broadcast leave message
         self.participants.remove(self)
+		#remove from all participants lists e.t.c.
         self.broadcast(self.participants, "Someone left.")
     
+	def broadcast_room(self, room, message):
+		self.broadcast(room.participants, message)
+		
     def process_message(self, message):
         json_msg = sockjs.tornado.proto.json_decode(message)
-        self.ideas_list.append(json_msg)
-        json_msg['source'] = self.session.conn_info.ip
-        message = sockjs.tornado.proto.json_encode(json_msg)
-        combined_ideas_list = self.combine_jsons(self.ideas_list)
+		if json_msg['ID'] == 'USER_AUTHORIZED':
+			pass
+		else if json_msg['ID'] == 'PARTICIPANTS_LIST':
+		
+			chat_room = IdeaRoomConnection()
+			chat_rooms.append({self.session.conn_info.ip : chat_room})
+			for ip, name in json_msg['participants
+			'].iteritems():
+				for participant in self.participants:
+					if ip == participant.session.conn_info.ip:
+						chat_room.add_participant(participant)
+					    break
+			self.broadcast_room(chat_room, self.session.conn_info.ip + 'invited you')
+		else:
+			json_msg['ID'] == 'IDEAS_LIST':
+				#idea from one room
+			#ideas_list.append(json_msg)
+			#json_msg['source'] = self.session.conn_info.ip
+			#message = sockjs.tornado.proto.json_encode(json_msg)
+			#combined_ideas_list = sockjs.tornado.proto.json_encode(ideas_list)
         
-        self.lock.acquire()
-        if self.connection_processed < len(self.participants):
-            self.connection_processed += 1
-        else:
-            self.send(combined_ideas_list)
-        self.lock.release()
+			#self.lock.acquire()
+			#if self.connection_processed < len(self.expected_count):
+			#    self.connection_processed += 1
+			#else:
+			#    self.send(combined_ideas_list)
+			#self.lock.release()
         
-    def combine_jsons(self, jsons):
-        return sockjs.tornado.proto.json_encode(jsons)
-        
+class IdeaRoomConnection:	
+	IdeaConnection connection
+	participants = []
+	
+	def _init_(self):
+		pass
+
+	def add_participant(self, participant):
+		participants.append(participant)
 
 if __name__ == "__main__":
     import logging
@@ -70,7 +97,7 @@ if __name__ == "__main__":
             [(r"/chat", IndexHandler)] + ChatRouter.urls
     )
 
-    # 3. Make Tornado app listen on port 8080
+    # 3. Make Tornado app listen on port 9090
     app.listen(9090)
 
     # 4. Start IOLoop
