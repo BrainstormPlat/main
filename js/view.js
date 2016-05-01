@@ -99,13 +99,26 @@ $(document).ready(function() {
     });
     $('#register').click(function() {
         h.UpdateMainForm($('#main_form').serialize());
-        $('#username').hide();
+        $('.step').removeClass('active_step');
+        $('.rating_container').css('display', 'none');
+        $('.working_class').hide();
+        $('.rating').hide();
+        $('#ideas').fadeIn();
+        $('.user_block').hide();
+        $('#step_2').addClass('active_step');
     });
     $('#add_user').click(function() {
         h.Authenticate($('#username').val());
     });
     $('#begin_storm').click(function() {
         h.Start();
+        $('.step').removeClass('active_step');
+        $('.rating_container').css('display', 'none');
+        $('.working_class').hide();
+        $('.rating').hide();
+        $('#ideas').fadeIn();
+        $('.user_block').hide();
+        $('#step_2').addClass('active_step');
     });
     $('.rating').change(function() {
         var tmp = $('.rating').val();
