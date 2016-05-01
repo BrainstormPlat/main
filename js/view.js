@@ -20,12 +20,14 @@ $(document).ready(function() {
     });
     $('#step_2').click(function() {
         $('.step').removeClass('active_step');
+        $('.rating_container').css('display', 'none');
         $('.working_class').hide();
         $('#ideas').fadeIn();
         $(this).addClass('active_step');
     });
     $('#step_3').click(function() {
         $('.step').removeClass('active_step');
+        $('.rating_container').css('display', 'flex');
         $('.working_class').hide();
         $('#ideas').fadeIn();
         $(this).addClass('active_step');
