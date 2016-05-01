@@ -25,7 +25,7 @@ Client.prototype.connect = function(auth_json) {
             t += '}}';
            this.connect(t);  
          }
-         else if(data.id === 'ideas_list_combained') {  
+         else if(data.id === 'ideas_list_combined') {  
             deleteIdeas();
             var ideas = data.content;
             this.ideas = JSON.parse(ideas);
