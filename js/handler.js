@@ -52,3 +52,7 @@ Handler.prototype.UpdateRatings = function(_idea_id, tmp) {
     console.log(this.client.ideas[_idea_id].rating);
     console.log(tmp);
 }
+
+Handler.prototype.connect = function(t) {
+    this.client.connect(t);
+}

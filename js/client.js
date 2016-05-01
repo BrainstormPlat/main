@@ -21,11 +21,12 @@ Client.prototype.connect = function(auth_json) {
              var t = '{"id":"ideas_list", "content":{';
             for (var key in this.ideas) {
              t += ' "idea":"'+this.ideas[key]+'",';
-            }      
+            } 
+            t = t.replace(',}}','}}');     
             t += '}}';
-            t = t.replace(',}}','}}');
-           console.log(t);
-           this.connect(t);  
+           console.log("data - "+t);
+           //this.connect(t);  
+           h.connect(t);
          }
          else if(data.id === 'ideas_list_combined') {  
             deleteIdeas();
