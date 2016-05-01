@@ -23,10 +23,11 @@ Client.prototype.connect = function(auth_json) {
     };
 }
 function authInfo(response) {
+  console.log("authentification info");
   if (response.session) {
-    alert('user: '+response.session.mid);
+    console.log('user: '+response.session.mid);
   } else {
-    alert('not auth');
+    console.log('not auth');
   }
 }
 
