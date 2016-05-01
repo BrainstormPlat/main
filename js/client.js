@@ -16,18 +16,16 @@ Client.prototype.connect = function(auth_json) {
     };
     socket.onmessage =  function (event) {
         var data = jQuery.parseJSON(event.data);  
-         if(data.id === "timer_exceeded")
+         if(data.id === "timer_exceeded") {
+           
            this.connect(this.ideas);  
+         }
          else if(data.id === 'idea_list_combained') {  
             deleteIdeas();
             this.ideas = JSON.parse(data.content);
          }
          _parse(data);   
     };
-}
-
-Client.prototype.setIdea = function(data) {
-    this.ideas.push(data);
 }
 
 function authInfo(response) {
