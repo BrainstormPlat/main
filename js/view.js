@@ -1,4 +1,6 @@
 //some events
+var h = new Handler();
+
 
 $(document).ready(function() {
     $('#ideas').hide();
@@ -48,5 +50,8 @@ $(document).ready(function() {
     });
     $('.idea').mouseleave(function() {
         $('.rating_container').css('opacity', '0');
+    });
+    $("#begin_storm").click(function() {
+       $("#theme").text() 
     });
 });

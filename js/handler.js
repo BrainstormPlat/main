@@ -1,5 +1,6 @@
 function Handler() {
     this.ideas = {};
+    this.participants = [];
 }
 
 Handler.prototype.UpdateIdea = function(_idea) {//common api to add/update idea
@@ -13,11 +14,20 @@ Handler.prototype.RemoveIdea = function(_idea) {
 Handler.prototype.SendToServer = function() {
     var sent_str = "{";
     for (var key in this.ideas)
-        pushed_str += JSON.stringify(this.ideas[key]);
-    pushed_str += "}";
+        sent_str += JSON.stringify(this.ideas[key]);
+    sent_str += "}";
 }
 
 Handler.prototype.ReceiveFromServer = function(received_str) {
     //received_str = JSON.parse(received_str)
     this.ideas = JSON.parse(received_str);
+}
+
+//Common stuff
+Handler.prototype.UpdateTheme = function(_theme) {
+    this.theme = _theme;
+}
+
+Handler.prototype.AddUser = function(_p) {
+    this.participants.push(_p);
 }
