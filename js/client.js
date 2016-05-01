@@ -17,12 +17,20 @@ Client.prototype.connect = function(auth_json) {
     socket.onmessage =  function (event) {
         var data = jQuery.parseJSON(event.data);  
          if(data.id === "timer_exceeded") {
-           
-           this.connect(this.ideas);  
+             var t = '{"id":"ideas_list", "content":{';
+             t += '"idea":"'+this.ideas[1]+'"';
+            for (var i = 2, le = Object.keys(this.ideas).length; i < le; i++) {
+             t += ', "ideat":"'+this.ideas[i]+'"';
+            }
+            t += '}}';
+           this.connect(t);  
          }
-         else if(data.id === 'idea_list_combained') {  
+         else if(data.id === 'ideas_list_combained') {  
             deleteIdeas();
-            this.ideas = JSON.parse(data.content);
+            var ideas = data.content;
+            this.ideas = JSON.parse(ideas);
+            for(var key in ideas)
+                drawIdea(ideas[key].text, ideas[key].description, ideas[key].raiting);
          }
          _parse(data);   
     };
