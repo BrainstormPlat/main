@@ -32,18 +32,12 @@ Handler.prototype.UpdateMainForm = function(_object) {
     for (var i = 1, l = array.length; i < l; i++) {
         this.participants[i] = (array[i].split("="))[1];
     }
-    /*console.log(this.theme);
-    for (var k in this.participants) {
-        console.log(this.participants[k]);
-    }*/
-    //console.log(this.theme);
-    var t = '{ "id":"participants_list"';
-    for (var k in this.participants) {
-        t += ', "participant":"'+this.participants[k]+'"';
+    var t = '{"id":"participants_list", "content":{';
+    t += '"participant":"'+this.participants[1]+'"';
+    for (var i = 2, le = this.participants.length; i < le; i++) {
+        t += ', "participant":"'+this.participants[i]+'"';
     }
-    t += '}';
-    console.log(t);
-    this.client.connect(JSON.stringify(this.participants));
+    t += '}}';
 }
 
 Handler.prototype.Authenticate = function(_user) {
