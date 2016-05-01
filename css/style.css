@@ -137,6 +137,9 @@ nav {
       align-items: center;
       opacity: 0; }
 
+#results {
+  text-align: center; }
+
 #add_idea {
   height: 60px;
   width: 60px;

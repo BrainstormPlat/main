@@ -163,6 +163,10 @@ nav {
     }
 }
 
+#results {
+    text-align: center;
+}
+
 #add_idea {
     height: 60px;
     width: 60px;
@@ -184,9 +188,11 @@ nav {
 #add_idea:hover {
     box-shadow: 0 0 20px #FF00E4;
 }
+
 #begin_storm {
     margin-bottom: 30px;
 }
+
 #add_board {
     input {
         width: 100%;
@@ -248,6 +254,7 @@ nav {
 .action_button:hover {
     box-shadow: 0 0 20px #FF00E4;
 }
+
 #login_button {
     padding: 4px 20px;
     box-shadow: none;
