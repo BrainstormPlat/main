@@ -74,7 +74,10 @@ $(document).ready(function() {
     $('.idea').mouseleave(function() {
         $('.rating_container').css('opacity', '0');
     });
-    $("#begin_storm").click(function() {
-        h.UpdateMainForm($("#main_form").serialize());
+    $('#begin_storm').click(function() {
+        h.UpdateMainForm($('#main_form').serialize());
+    });
+    $('#add_user').click(function() {
+        
     });
 });

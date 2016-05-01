@@ -22,8 +22,6 @@ function onLoad() {
 google.setOnLoadCallback(onLoad);
 
 //client
-var client = new Client("http://10.240.20.158:9090/chat"); 
-client.connect(new Idea().QueryJson());
 VK.init({
   apiId: 1121
 });
