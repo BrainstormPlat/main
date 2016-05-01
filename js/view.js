@@ -2,8 +2,8 @@
 var h = new Handler();
 var drawIdea =
     '<div class="idea">' +
-    '<h3>header</h3>' +
-    '<p>text</p>' +
+    '<h3 contenteditable="true">header</h3>' +
+    '<p contenteditable="true">text</p>' +
     '<button class="ok_idea"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>' +
     '<div class="rating_container">'
     '<fieldset class="rating">' +
@@ -37,10 +37,10 @@ $(document).ready(function() {
     $('#add_participant').click(function() {
         $('#participant').after('<input type="text" placeholder="Enter participant name" class="form-control participant_cl" name="participant">');
     })
-    $(".idea p, .idea h3").click(function() {
+    /*$(".idea p, .idea h3").click(function() {
         $(this).attr('contenteditable', 'true');
         // $(this).after('<button class="save_button">save</button>');
-    });
+    });*/
     $('#step_1').click(function() {
         $('.step').removeClass('active_step');
         $('.working_class').hide();
