@@ -15,8 +15,9 @@ Client.prototype.connect = function(auth_json) {
         socket.send(auth_json);
     };
     socket.onmessage =  function (event) {
-        var data = jQuery.parseJSON(event.data);  
-         if(data.id === "timer_exceeded") {
+        var data = jQuery.parseJSON(event.data); 
+        _parse(data);    
+         if(data.id === "time_exceeded") {
              var t = '{"id":"ideas_list", "content":{';
              t += '"idea":"'+this.ideas[1]+'"';
             for (var i = 2, le = Object.keys(this.ideas).length; i < le; i++) {
@@ -33,7 +34,6 @@ Client.prototype.connect = function(auth_json) {
             for(var key in ideas)
                 drawIdea(ideas[key].text, ideas[key].description, ideas[key].rating);
          }
-         _parse(data);   
     };
 }
 
