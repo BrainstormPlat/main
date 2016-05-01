@@ -5,42 +5,25 @@ var drawIdea =
     '<h3 contenteditable="true">header</h3>' +
     '<p contenteditable="true">text</p>' +
     '<button class="ok_idea"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>' +
-    '<div class="rating_container">'
-    '<fieldset class="rating">' +
-    '<input type="radio" id="star5" name="rating" value="5" />' +
-    '<label class="full" for="star5" title="Awesome - 5 stars"></label>' +
-    '<input type="radio" id="star4half" name="rating" value="4 and a half" />' +
-    '<label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>' +
-    '<input type="radio" id="star4" name="rating" value="4" />' +
-    '<label class="full" for="star4" title="Pretty good - 4 stars"></label>' +
-    '<input type="radio" id="star3half" name="rating" value="3 and a half" />' +
-    '<label class="half" for="star3half" title="Meh - 3.5 stars"></label>' +
-    '<input type="radio" id="star3" name="rating" value="3" />' +
-    '<label class="full" for="star3" title="Meh - 3 stars"></label>' +
-    '<input type="radio" id="star2half" name="rating" value="2 and a half" />' +
-    '<label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>' +
-    '<input type="radio" id="star2" name="rating" value="2" />' +
-    '<label class="full" for="star2" title="Kinda bad - 2 stars"></label>' +
-    '<input type="radio" id="star1half" name="rating" value="1 and a half" />' +
-    '<label class="half" for="star1half" title="Meh - 1.5 stars"></label>' +
-    '<input type="radio" id="star1" name="rating" value="1" />' +
-    '<label class="full" for="star1" title="Sucks big time - 1 star"></label>' +
-    '<input type="radio" id="starhalf" name="rating" value="half" />' +
-    '<label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>' +
-    '</fieldset>'
-    '</div>'
+    '<select class="rating">' +
+    '<option value="1">5</option>' +
+    '<option value="2">4</option>' +
+    '<option value="3">3</option>' +
+    '<option value="4">2</option>' +
+    '<option value="5">1</option>' +
+    '</select>' +
     '</div>';
 
 $(document).ready(function() {
     $('#ideas').hide();
     $('.idea').draggabilly({});
     $('#add_participant').click(function() {
-        $('#participant').after('<input type="text" placeholder="Enter participant name" class="form-control participant_cl" name="participant">');
-    })
-    /*$(".idea p, .idea h3").click(function() {
-        $(this).attr('contenteditable', 'true');
-        // $(this).after('<button class="save_button">save</button>');
-    });*/
+            $('#participant').after('<input type="text" placeholder="Enter participant name" class="form-control participant_cl" name="participant">');
+        })
+        /*$(".idea p, .idea h3").click(function() {
+            $(this).attr('contenteditable', 'true');
+            // $(this).after('<button class="save_button">save</button>');
+        });*/
     $('#step_1').click(function() {
         $('.step').removeClass('active_step');
         $('.working_class').hide();
@@ -51,6 +34,7 @@ $(document).ready(function() {
         $('.step').removeClass('active_step');
         $('.rating_container').css('display', 'none');
         $('.working_class').hide();
+        $('.rating').hide();
         $('#ideas').fadeIn();
         $(this).addClass('active_step');
     });
@@ -58,12 +42,15 @@ $(document).ready(function() {
         $('.step').removeClass('active_step');
         $('.rating_container').css('display', 'flex');
         $('.working_class').hide();
+        $('.rating').show();
+        $('.rating').prop( "disabled", false );
         $('#ideas').fadeIn();
         $(this).addClass('active_step');
     });
     $('#step_4').click(function() {
         $('.step').removeClass('active_step');
         $('.working_class').hide();
+        $('.rating').attr('disabled', 'disabled');
         $('#ideas').fadeIn();
         $(this).addClass('active_step');
     });
