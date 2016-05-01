@@ -39,7 +39,7 @@ $(document).ready(function() {
     $('.idea').draggabilly({});
     $('#add_participant').click(function() {
             $('#participant').after('<input type="text" placeholder="Enter participant name" class="form-control participant_cl" name="participant">');
-        })
+        });
         /*$(".idea p, .idea h3").click(function() {
             $(this).attr('contenteditable', 'true');
             // $(this).after('<button class="save_button">save</button>');
@@ -47,7 +47,7 @@ $(document).ready(function() {
     $('#step_1').click(function() {
         $('.step').removeClass('active_step');
         $('.working_class').hide();
-$('.user_block').show();
+        $('.user_block').show();
         $('#add_board').fadeIn();
         $(this).addClass('active_step');
     });
@@ -111,5 +111,8 @@ $('.user_block').show();
     });
     $('.ok_idea').click(function() {
         console.log($(this).parent().id);
+    });
+    $('.idea h3,.idea p').click(function() {
+        $(this).focus();
     });
 });
