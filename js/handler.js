@@ -48,9 +48,8 @@ Handler.prototype.Start = function() {
     this.client.connect('{"id":"joined"}');
 }
 
-Handler.prototype.UpdateRatings = function(_object) {
-    var array = _object.split("&");
-    for (var i = 0, le = array.length; i < le; i++) {
-        this.ratings[i] = (array[i].split("="))[1];
-    }
+Handler.prototype.UpdateRatings = function(_idea_id, tmp) {
+    ideaMap[_idea_id].rating = tmp;
+    console.log(_idea_id);
+    console.log(tmp);
 }

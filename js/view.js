@@ -39,7 +39,7 @@ $(document).ready(function() {
     $('.idea').draggabilly({});
     $('#add_participant').click(function() {
             $('#participant').after('<input type="text" placeholder="Enter participant name" class="form-control participant_cl" name="participant">');
-        })
+        });
         /*$(".idea p, .idea h3").click(function() {
             $(this).attr('contenteditable', 'true');
             // $(this).after('<button class="save_button">save</button>');
@@ -47,7 +47,7 @@ $(document).ready(function() {
     $('#step_1').click(function() {
         $('.step').removeClass('active_step');
         $('.working_class').hide();
-$('.user_block').show();
+        $('.user_block').show();
         $('#add_board').fadeIn();
         $(this).addClass('active_step');
     });
@@ -96,6 +96,7 @@ $('.user_block').show();
     });
     $('#register').click(function() {
         h.UpdateMainForm($('#main_form').serialize());
+        $('#username').hide();
     });
     $('#add_user').click(function() {
         h.Authenticate($('#username').val());
@@ -103,10 +104,10 @@ $('.user_block').show();
     $('#begin_storm').click(function() {
         h.Start();
     });
-    $('.rating').click(function() {
+    $('.rating').change(function() {
         var tmp = $('.rating').val();
-        console.log(tmp);
-        //h.UpdateRatings(tmp);
+        //console.log(tmp);
+        h.UpdateRatings($('.rating').parent.id, tmp);
     });
     
     $('.ok_idea').click(function() {
@@ -115,5 +116,8 @@ $('.user_block').show();
         var description = $("#"+id +" p").text();
         console.log(id);
       h.UpdateIdea(new Idea(id,idea,description,5));
+    });
+    $('.idea h3,.idea p').click(function() {
+        $(this).focus();
     });
 });
