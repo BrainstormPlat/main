@@ -1,18 +1,38 @@
 //some events
 var h = new Handler();
-var drawIdea =
-    '<div class="idea">' +
-    '<h3 contenteditable="true">header</h3>' +
-    '<p contenteditable="true">text</p>' +
-    '<button class="ok_idea"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>' +
-    '<select class="rating">' +
-    '<option value="1">5</option>' +
-    '<option value="2">4</option>' +
-    '<option value="3">3</option>' +
-    '<option value="4">2</option>' +
-    '<option value="5">1</option>' +
-    '</select>' +
-    '</div>';
+var indexIdea = 1;
+var ideaMap = {};
+function deleteIdeas() {
+    $('.idea').remove();
+}
+function drawIdea (self,idea, description) {
+    idea = (idea === undefined) ? 'idea' : idea;
+    description = (description === undefined) ? 'description' : description;
+    var idea =
+        '<div class="idea"  id=idea_' + indexIdea + '>' +
+        '<h3 contenteditable="true">' + idea + '</h3>' +
+        '<p contenteditable="true">' + description + '</p>' +
+        '<button class="ok_idea"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>' +
+        '<select class="rating">' +
+        '<option value="1">5</option>' +
+        '<option value="2">4</option>' +
+        '<option value="3">3</option>' +
+        '<option value="4">2</option>' +
+        '<option value="5">1</option>' +
+        '</select>' +
+        '</div>';
+   indexIdea++;     
+   $(self).before(idea);
+   $('.idea').draggabilly({});
+   $('.rating').hide();     
+   $('.ok_idea').click(function() {
+        var id = $(this).parent().attr('id');
+        var idea = $("#"+id +" h3").text();
+        var description = $("#"+id +" p").text();
+        console.log(id);
+   ideaMap[id] = new Idea(id,idea,description,5);
+    });   
+}
 
 $(document).ready(function() {
     $('#ideas').hide();
@@ -59,14 +79,15 @@ $('.user_block').show();
         $(this).addClass('active_step');
     });
     $('#add_idea').click(function() {
-        $(this).before(drawIdea);
-        $('.idea').draggabilly({});
+       var self = this;
+       drawIdea(self,"idea","description");        
         /*$('#ideas').masonry({
             // options
             itemSelector: '.idea',
             columnWidth: 200
         });*/
     });
+    
     $('.idea').mouseover(function() {
         $('.rating_container').css('opacity', '1');
     });
@@ -87,5 +108,8 @@ $('.user_block').show();
         var tmp = $('.rating').val();
         //console.log(tmp);
         h.UpdateRatings($('.rating').parent.id, tmp);
+    });
+    $('.ok_idea').click(function() {
+        console.log($(this).parent().id);
     });
 });

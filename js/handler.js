@@ -38,7 +38,7 @@ Handler.prototype.UpdateMainForm = function(_object) {
         t += ', "participant":"'+this.participants[i]+'"';
     }
     t += '}}';
-    this.client.setParticipants(t);
+    this.client.connect(t);
 }
 
 Handler.prototype.Authenticate = function(_user) {

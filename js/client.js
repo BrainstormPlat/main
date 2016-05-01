@@ -6,7 +6,7 @@ function _parse (data) {
 
 function Client (url) {
     this.url = url;
-    this.participants = {};
+    this.ideas = {};
 }
 
 Client.prototype.connect = function(auth_json) {
@@ -18,12 +18,16 @@ Client.prototype.connect = function(auth_json) {
         var data = jQuery.parseJSON(event.data);  
          if(data.id === "timer_exceeded")
            this.connect(this.participants);  
+         else if(data.id === 'idea_list_combained') {  
+            deleteIdeas();
+            drawIdea("list","lala");
+         }
          _parse(data);   
     };
 }
 
-Client.prototype.setParticipants = function(data) {
-    this.participants = data;
+Client.prototype.setIdea = function(data) {
+    this.ideas.push(data);
 }
 
 function authInfo(response) {
