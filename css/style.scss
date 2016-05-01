@@ -18,7 +18,7 @@ nav {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.2);
     .user_block {
-        width: 150px;
+        width: 280px;
         position: relative;
         color: #fff;
         padding-left: 30px;
@@ -256,6 +256,12 @@ nav {
 }
 
 #login_button {
+    padding: 4px 20px;
+    box-shadow: none;
+}
+
+#add_user {
+    display: inline-block;
     padding: 4px 20px;
     box-shadow: none;
 }

@@ -32,7 +32,8 @@
                 <p>User Name</p>-->
                 <!--<button id="login_button" class="action_button" onclick="VK.Auth.login(authInfo);"><i class="fa fa-vk" aria-hidden="true"></i> Login</button>-->
                 <input type="text" placeholder="Username" id="username">
-                <button class="" id="add_user">ok</button>
+                <button class="action_button" id="add_user"><i class="fa fa-sign-in" aria-hidden="true"></i></button>
+
             </div>
         </div>
     </nav>
@@ -54,11 +55,9 @@
                         <div style="padding: 0;" class="col-md-12">
                             <button id="add_participant" onclick="return false" class="plus_button">+</button>
                         </div>
-                        <div style="padding: 0;" class="col-md-12">
-                            <button id="register" class="action_button">Register!</button>
-                        </div>
-                        <div style="padding: 0;" class="col-md-12">
-                            <button id="begin_storm" class="action_button">Join!</button>
+                        <div style="padding: 0; text-align: center;" class="col-md-12">
+                            <button id="register" style="display: inline-block;" class="action_button">Register!</button>
+                            <button id="begin_storm" style="display: inline-block;" class="action_button">Join!</button>
                         </div>
                     </form>
                 </div>
@@ -72,11 +71,11 @@
                 <h3 contenteditable="true">header</h3>
                 <p contenteditable="true">text</p>
                 <select class="rating">
-                    <option value="1">5</option>
-                    <option value="2">4</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
                     <option value="3">3</option>
-                    <option value="4">2</option>
-                    <option value="5">1</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
                 </select>
                 <button class="ok_idea"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
                 <!--<div class="rating_container">
