@@ -63,6 +63,8 @@ $(document).ready(function() {
         $('#ideas').fadeIn();
         $('.user_block').hide();
         $(this).addClass('active_step');
+        $('#go_from_2').show();
+        $('#go_from_3').hide();
     });
     $('#step_3').click(function() {
         $('.step').removeClass('active_step');
@@ -73,6 +75,8 @@ $(document).ready(function() {
         $('#ideas').fadeIn();
         $('.user_block').hide();
         $(this).addClass('active_step');
+        $('#go_from_2').hide();
+        $('#go_from_3').show();
     });
     $('#step_4').click(function() {
         $('.step').removeClass('active_step');
@@ -81,6 +85,8 @@ $(document).ready(function() {
         $('#ideas').fadeIn();
         $('.user_block').hide();
         $(this).addClass('active_step');
+        $('#go_from_2').hide();
+        $('#go_from_3').hide();
     });
     $('#add_idea').click(function() {
        var self = this;
@@ -144,6 +150,8 @@ $(document).ready(function() {
         $('#ideas').fadeIn();
         $('.user_block').hide();
         $('#step_3').addClass('active_step');
+        $('#go_from_2').hide();
+        $('#go_from_3').show();
     });
     $('#go_from_3').click(function () {
         $('.step').removeClass('active_step');
@@ -154,5 +162,7 @@ $(document).ready(function() {
         $('#ideas').fadeIn();
         $('.user_block').hide();
         $('#step_4').addClass('active_step');
+        $('#go_from_2').hide();
+        $('#go_from_3').hide();
     });
 });
