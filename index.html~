@@ -68,8 +68,8 @@
         <!--<span class="timer">14:18</span>-->
         <div class="container-fluid ideas_container">
             <div class="idea">
-                <h3 contenteditable="true">idea</h3>
-                <p contenteditable="true">description</p>
+                <h3 contenteditable="true">header</h3>
+                <p contenteditable="true">text</p>
                 <select class="rating">
                     <option value="5">5</option>
                     <option value="4">4</option>
