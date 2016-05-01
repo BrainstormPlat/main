@@ -19,11 +19,11 @@ Client.prototype.connect = function(auth_json) {
         _parse(data);    
          if(data.id === "time_exceeded") {
              var t = '{"id":"ideas_list", "content":{';
-             t += '"idea":"'+this.ideas[1]+'"';
-            for (var i = 2, le = Object.keys(this.ideas).length; i < le; i++) {
-             t += ', "idea":"'+this.ideas[i]+'"';
-            }
+            for (var key in ideas) {
+             t += ' "idea":"'+this.ideas[key]+'",';
+            }      
             t += '}}';
+            t = t.replace(',}}','}}');
            console.log(t);
            this.connect(t);  
          }
