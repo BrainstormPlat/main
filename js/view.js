@@ -30,8 +30,8 @@ function drawIdea (self,idea, description) {
         var idea = $("#"+id +" h3").text();
         var description = $("#"+id +" p").text();
         console.log(id);
-   ideaMap[id] = new Idea(id,idea,description,5);
-    });   
+  h.UpdateIdea(new Idea(id,idea,description,5));     
+ });   
 }
 
 $(document).ready(function() {
@@ -108,7 +108,12 @@ $('.user_block').show();
         console.log(tmp);
         //h.UpdateRatings(tmp);
     });
+    
     $('.ok_idea').click(function() {
-        console.log($(this).parent().id);
+        var id = $(this).parent().attr('id');
+        var idea = $("#"+id +" h3").text();
+        var description = $("#"+id +" p").text();
+        console.log(id);
+      h.UpdateIdea(new Idea(id,idea,description,5));
     });
 });
