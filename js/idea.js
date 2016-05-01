@@ -6,16 +6,16 @@ function Idea() {
     _id++;
     this.text = "My Idea";
     this.description = "This is my idea. Hooray!";
-    this.priority = 0;
+    this.rating = 5;
 }
 
-function Idea(_text, _description, /*optional*/ _priority) {
+function Idea(_text, _description, /*optional*/ _rating) {
     _priority = ( _priority !== undefined ) ? _priority : 0;
     this.id = _id;
     _id++;
     this.text = _text;
     this.description = _description;
-    this.priority = _priority;
+    this.rating = _rating;
 }
 
 Idea.prototype.QueryJson = function() {
