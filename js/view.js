@@ -75,6 +75,7 @@ $('.user_block').show();
     });
     $('#register').click(function() {
         h.UpdateMainForm($('#main_form').serialize());
+        $('#username').hide();
     });
     $('#add_user').click(function() {
         h.Authenticate($('#username').val());
@@ -82,9 +83,9 @@ $('.user_block').show();
     $('#begin_storm').click(function() {
         h.Start();
     });
-    $('.rating').click(function() {
+    $('.rating').change(function() {
         var tmp = $('.rating').val();
-        console.log(tmp);
-        //h.UpdateRatings(tmp);
+        //console.log(tmp);
+        h.UpdateRatings($('.rating').parent.id, tmp);
     });
 });
