@@ -54,6 +54,6 @@ $(document).ready(function() {
         $('.rating_container').css('opacity', '0');
     });
     $("#begin_storm").click(function() {
-       $("#theme").text() 
+        h.UpdateTheme($("#theme").val());
     });
 });

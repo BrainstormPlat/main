@@ -26,6 +26,7 @@ Handler.prototype.ReceiveFromServer = function(received_str) {
 //Common stuff
 Handler.prototype.UpdateTheme = function(_theme) {
     this.theme = _theme;
+    console.log(this.theme);
 }
 
 Handler.prototype.AddUser = function(_p) {
