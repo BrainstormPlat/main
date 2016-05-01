@@ -2,6 +2,7 @@ function Handler() {
     this.client = new Client("http://10.240.20.158:9090/chat");
     this.ideas = {};
     this.participants = [];
+    this.ratings = [];
 }
 
 Handler.prototype.UpdateIdea = function(_idea) {//common api to add/update idea
@@ -46,4 +47,11 @@ Handler.prototype.Authenticate = function(_user) {
 
 Handler.prototype.Start = function() {
     this.client.connect('{"id":"joined"}');
+}
+
+Handler.prototype.UpdateRatings = function(_object) {
+    var array = _object.split("&");
+    for (var i = 0, le = array.length; i < le; i++) {
+        this.ratings[i] = (array[i].split("="))[1];
+    }
 }
