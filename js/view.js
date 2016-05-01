@@ -1,6 +1,6 @@
 //some events
 var h = new Handler();
-var indexIdea = 1;
+var indexIdea = 0;
 var ideaMap = {};
 var ideaSelf;
 function deleteIdeas() {
@@ -22,18 +22,15 @@ function drawIdea (self, idea, description) {
         '<option value="1">1</option>' +
         '</select>' +
         '</div>';
-        $('this h3,this p').click(function() {
-            ideaSelf.focus();
-        });
    indexIdea++;     
    $(ideaSelf).before(idea);
    $('.idea').draggabilly({});
    $('.rating').hide();     
    $('.ok_idea').click(function() {
-        var id = $(ideaSelf).parent().attr('id');
+        var id = $(this).parent().attr('id');
         var idea = $("#"+id +" h3").text();
         var description = $("#"+id +" p").text();
-        console.log(id);
+        console.log('id - '+id);
   h.UpdateIdea(new Idea(id,idea,description,5));     
  });   
 }
