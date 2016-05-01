@@ -1,22 +1,21 @@
 function Handler() {
     this.client = new Client("http://10.240.20.158:9090/chat");
-    this.ideas = {};
     this.participants = [];
     this.ratings = [];
 }
 
 Handler.prototype.UpdateIdea = function(_idea) {//common api to add/update idea
-    this.ideas[_idea.id] = _idea;//should work according to Lisa
+    this.client.ideas[_idea.id] = _idea;
 }
 
 Handler.prototype.RemoveIdea = function(_idea) {
-    delete this.ideas[_idea.id];
+    delete this.client.ideas[_idea.id];
 }
 
 Handler.prototype.SendToServer = function() {
     var sent_str = "{";
-    for (var key in this.ideas)
-        sent_str += JSON.stringify(this.ideas[key]);
+    for (var key in this.client.ideas)
+        sent_str += JSON.stringify(this.client.ideas[key]);
     sent_str += "}";
 }
 
