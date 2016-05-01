@@ -20,12 +20,12 @@ Client.prototype.connect = function(auth_json) {
              var t = '{"id":"ideas_list", "content":{';
              t += '"idea":"'+this.ideas[1]+'"';
             for (var i = 2, le = Object.keys(this.ideas).length; i < le; i++) {
-             t += ', "ideat":"'+this.ideas[i]+'"';
+             t += ', "idea":"'+this.ideas[i]+'"';
             }
             t += '}}';
            this.connect(t);  
          }
-         else if(data.id === 'ideas_list_combained') {  
+         else if(data.id === 'ideas_list_combined') {  
             deleteIdeas();
             var ideas = data.content;
             this.ideas = JSON.parse(ideas);
