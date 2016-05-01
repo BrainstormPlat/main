@@ -27,6 +27,7 @@ $(document).ready(function() {
     $('#step_1').click(function() {
         $('.step').removeClass('active_step');
         $('.working_class').hide();
+$('.user_block').show();
         $('#add_board').fadeIn();
         $(this).addClass('active_step');
     });
@@ -36,6 +37,7 @@ $(document).ready(function() {
         $('.working_class').hide();
         $('.rating').hide();
         $('#ideas').fadeIn();
+        $('.user_block').hide();
         $(this).addClass('active_step');
     });
     $('#step_3').click(function() {
@@ -45,6 +47,7 @@ $(document).ready(function() {
         $('.rating').show();
         $('.rating').prop( "disabled", false );
         $('#ideas').fadeIn();
+        $('.user_block').hide();
         $(this).addClass('active_step');
     });
     $('#step_4').click(function() {
@@ -52,6 +55,7 @@ $(document).ready(function() {
         $('.working_class').hide();
         $('.rating').attr('disabled', 'disabled');
         $('#ideas').fadeIn();
+        $('.user_block').hide();
         $(this).addClass('active_step');
     });
     $('#add_idea').click(function() {
