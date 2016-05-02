@@ -1,6 +1,12 @@
-// function bubbleSortMod(data) {
-//     for(var i = 0; i < data.length -1; i++)
-// }
+function _log (data) {
+    for(var key in data)
+    {
+        console.log("key - "+key+" data - "+data[key]);
+        if( typeof(data[key]) === 'object')
+           _log(data[key]);
+    } 
+}
+
 function Handler() {
     this.client = new Client("http://10.240.20.158:9090/chat");
     this.participants = [];
@@ -8,8 +14,9 @@ function Handler() {
 }
 
 Handler.prototype.UpdateIdea = function(_idea) {//common api to add/update idea
-    console.log('idea');
+    console.log('id - '+_idea.id);
     this.client.ideas[_idea.id] = _idea;
+    _log(this.client.ideas);
 }
 
 Handler.prototype.RemoveIdea = function(_idea) {

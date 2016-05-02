@@ -1,13 +1,4 @@
 "use strict"
-function _parse (data) {
-    for(var key in data)
-    {
-        console.log("key - "+key+" data - "+data[key]);
-        for( var key1 in data[key])
-        console.log("key1 - "+key+" data - "+data[key][key1]);
-    } 
-}
-
 function Client (url) {
     this.url = url;
     this.ideas = {};
@@ -20,10 +11,9 @@ Client.prototype.connect = function(auth_json) {
     };
     socket.onmessage =  function (event) {
         var data = jQuery.parseJSON(event.data); 
-        _parse(data);    
+        _log(data);    
          if(data.id === "time_exceeded") {
             var t = '{"id":"ideas_list", "content":{';
-         //console.log('length - '+Object.keys(this.ideas).length);
             var i = 0;
             t += '"idea'+i+'":{';
             t += this.ideas[0].id+','+this.ideas[0].text+','+this.ideas[0].description+','+this.ideas[0].rating;
