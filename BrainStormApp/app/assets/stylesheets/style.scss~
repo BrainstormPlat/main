@@ -5,7 +5,7 @@ sans-serif;
 }
 
 body {
-    background-image: url(../template-assets/bg.jpg);
+    background-image: url(../images/bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -48,7 +48,7 @@ nav {
     margin: 0 auto;
     max-width: 580px;
     height: 150px;
-    background-image: url(../template-assets/line.png);
+    background-image: url(../images/line.png);
     background-repeat: no-repeat;
     background-position: center;
     text-align: center;
@@ -66,7 +66,7 @@ nav {
         margin: 0;
         cursor: pointer;
         /*transition: all 0.3s;*/
-        background-image: url(../template-assets/step_dot.png);
+        background-image: url(../images/step_dot.png);
         background-position: center;
         background-repeat: no-repeat;
         border-color: #fff;
@@ -101,7 +101,7 @@ nav {
         border: solid 2px #fff;
         /* background: #000;*/
         color: #fff;
-        background-image: url(../template-assets/step_dot.png);
+        background-image: url(../images/step_dot.png);
         background-position: center;
         background-repeat: no-repeat;
     }
