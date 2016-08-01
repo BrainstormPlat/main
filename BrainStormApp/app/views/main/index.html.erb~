@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Brainstorm</title>
+    
+    
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="#"><img src="../..//..//assets//images/logo.png" alt=""></a>
+            <div class="user_block pull-right">
+                <!--<img src="temvplate-assets/userpic.png" alt="">
+                <p>User Name</p>-->
+                <!--<button id="login_button" class="action_button" onclick="VK.Auth.login(authInfo);"><i class="fa fa-vk" aria-hidden="true"></i> Login</button>-->
+                <input type="text" placeholder="Username" id="username">
+                <button class="action_button" id="add_user"><i class="fa fa-sign-in" aria-hidden="true"></i></button>
+
+            </div>
+        </div>
+    </nav>
+    <section id="steps">
+        <div id="step_1" class="step active_step"></div>
+        <div id="step_2" class="step"></div>
+        <div id="step_3" class="step"></div>
+        <div id="step_4" class="step"></div>
+    </section>
+    <section id="add_board" class="working_class">
+        <div class="container">
+            <div class="row">
+                <div class=i "col-md-offset-2 col-md-8 form_container">
+                    <form id="main_form">
+                        <h2>Brainstorm theme:</h2>
+                        <input type="text" placeholder="Enter your theme" class="form-control" name="theme" id="theme">
+                        <h2>Participants:</h2>
+                        <input type="text" placeholder="Enter participant name" class="form-control participant_cl" name="participant" id="participant">
+                        <div style="padding: 0;" class="col-md-12">
+                            <button id="add_participant" onclick="return false" class="plus_button">+</button>
+                        </div>
+                        <div style="padding: 0; text-align: center;" class="col-md-12">
+                            <button id="register" style="display: inline-block;" onclick="return false" class="action_button">Register!</button>
+                            <button id="begin_storm" style="display: inline-block;" onclick="return false" class="action_button">Join!</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="ideas" class="working_class hidden">
+        <!--<span class="timer">14:18</span>-->
+        <div class="container-fluid ideas_container">
+            <!--<div class="idea" id="idea_0">
+                <h3 contenteditable="true">idea</h3>
+                <p contenteditable="true">description</p>
+                <select class="rating">
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                </select>
+                <button class="ok_idea"><i class="fa fa-check-circle-o" aria-hidden="true"></i></button>
+            </div>-->
+            <button class="plus_button" id="add_idea">+</button>
+        </div>
+        <div style="padding: 0;" class="col-md-12">
+            <button id="go_from_2" onclick="return false" class="action_button">Start rating!</button>
+        </div>
+        <div style="padding: 0;" class="col-md-12">
+            <button id="go_from_3" onclick="return false" class="action_button">Watch results!</button>
+        </div>
+        <!--<div style="padding: 0;" class="col-md-12">
+            <button id="go_rate" onclick="return false" class="action_button">Show list!</button>
+        </div>-->        
+        <section id="results">
+            <h2>Best Idea:</h2>
+            <span id="best_idea">This is the best idea!</span>
+        </section>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,283 @@
+* {
+  font-family: "Open Sans", sans-serif; }
+
+body {
+  background-image: url(..\images\bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh; }
+
+nav {
+  padding: 6px;
+  height: 40px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2); }
+  nav .user_block {
+    width: 280px;
+    position: relative;
+    color: #fff;
+    padding-left: 30px; }
+    nav .user_block p {
+      position: absolute;
+      top: 3px;
+      right: 0px;
+      margin: 0;
+      display: inline-block; }
+    nav .user_block input {
+      width: 70%;
+      height: 28px;
+      background-color: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-family: "Open Sans", sans-serif;
+      font-weight: 300;
+      padding-left: 15px;
+      border: none;
+      border-radius: 5px;
+      outline: none; }
+
+#steps {
+  margin: 0 auto;
+  max-width: 580px;
+  height: 150px;
+  background-image: url(..\images\line.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+  #steps .step {
+    position: relative;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    font-size: 36px;
+    padding: 5px;
+    margin: 0;
+    cursor: pointer;
+    /*transition: all 0.3s;*/
+    background-image: url(..\images\step_dot.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    border-color: #fff;
+    border: solid 2px transparent; }
+  #steps .step:before {
+    content: 'step';
+    font-family: "Open Sans", sans-serif;
+    color: #fff;
+    position: absolute;
+    top: -30px;
+    left: 5px;
+    font-size: 14px; }
+  #steps #step_1::before {
+    content: 'Start';
+    left: 0px; }
+  #steps #step_2::before {
+    content: 'Storm';
+    left: -5px; }
+  #steps #step_3::before {
+    content: 'Choise';
+    left: -8px; }
+  #steps #step_4::before {
+    content: 'Finish!';
+    left: -8px; }
+  #steps .step:hover {
+    border: solid 2px #fff;
+    /* background: #000;*/
+    color: #fff;
+    background-image: url(..\images\step_dot.png);
+    background-position: center;
+    background-repeat: no-repeat; }
+  #steps .active_step {
+    border: solid 2px #fff;
+    /* background: #000;*/
+    color: #fff; }
+
+#searchbox {
+  /*position: fixed;
+  right: 30px;
+  top: 12px;*/ }
+  #searchbox button {
+    border: none;
+    border-radius: 5px; }
+
+#ideas {
+  padding: 15px 0; }
+  #ideas .timer {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 60px;
+    font-weight: 600; }
+  #ideas .ideas_container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap; }
+  #ideas .idea {
+    display: inline-block;
+    position: relative;
+    background: #fff;
+    border-radius: 10px;
+    width: 255px;
+    margin: 15px auto; }
+    #ideas .idea h3 {
+      display: block;
+      width: 90%;
+      margin: 5px auto;
+      text-align: center;
+      border-bottom: 1px solid #000; }
+    #ideas .idea p {
+      padding: 5px 8px;
+      margin: 0; }
+    #ideas .idea .save_button {
+      background: green;
+      color: #fff; }
+    #ideas .idea .rating_container {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      opacity: 1;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      opacity: 0; }
+
+#results {
+  text-align: center; }
+
+#add_idea {
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+  border: none;
+  background-color: #ff0093;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px #ff0093;
+  outline: none;
+  margin: 20px auto;
+  transition: all 0.3s;
+  position: fixed;
+  bottom: 30px;
+  right: 45px; }
+
+#add_idea:hover {
+  box-shadow: 0 0 20px #FF00E4; }
+
+#begin_storm {
+  margin-bottom: 30px; }
+
+#add_board input {
+  width: 100%;
+  height: 45px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
+  padding-left: 15px;
+  border: none;
+  border-radius: 5px;
+  outline: none; }
+#add_board .participant_cl {
+  margin-bottom: 15px; }
+#add_board h2 {
+  margin-top: 40px;
+  text-align: center;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 400; }
+#add_board .plus_button {
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  border: none;
+  background-color: #ff0093;
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px #ff0093;
+  outline: none;
+  margin: 5px auto;
+  transition: all 0.3s; }
+#add_board .plus_button:hover {
+  box-shadow: 0 0 20px #FF00E4; }
+
+.action_button {
+  margin: 0 auto;
+  display: block;
+  background-color: #ff0093;
+  padding: 10px 35px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  border-radius: 50px;
+  box-shadow: 0 5px 15px #ff0093;
+  transition: all 0.3s;
+  cursor: pointer;
+  outline: none; }
+
+.action_button:hover {
+  box-shadow: 0 0 20px #FF00E4; }
+
+#login_button {
+  padding: 4px 20px;
+  box-shadow: none; }
+
+#add_user {
+  display: inline-block;
+  padding: 4px 20px;
+  box-shadow: none; }
+
+/****** Style Star Rating Widget *****/
+.rating {
+  border: none;
+  float: left; }
+
+.rating > input {
+  display: none; }
+
+.rating > label:before {
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005"; }
+
+.rating > .half:before {
+  content: "\f089";
+  position: absolute; }
+
+.rating > label {
+  color: #ddd;
+  float: right; }
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #FFD700; }
+
+/* hover previous stars in list */
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+  color: #FFED85; }
+
+/*==========  Non-Mobile First Method  ==========*/
+@media only screen and (max-width: 768px) {
+  #steps {
+    background-size: 93%; } }
+@media only screen and (max-width: 320px) {
+  #steps {
+    background-size: 90%; } }
+
+/*# sourceMappingURL=style.css.map */
