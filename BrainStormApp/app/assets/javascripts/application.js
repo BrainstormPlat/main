@@ -11,6 +11,3 @@
 // about supported directives.
 //
 //= require_tree .
-//= require handler
-//= require idea
-//= require view

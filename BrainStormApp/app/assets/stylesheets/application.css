@@ -12,7 +12,4 @@
  *
  *= require_tree .
  *= require_self
- *= require grid12
- *= require style
- *= require normalize
  */
