@@ -1,48 +1,52 @@
 "use strict"
-function Client (url) {
-    this.url = url;
-    this.ideas = {};
-}
 
-Client.prototype.connect = function(auth_json) {
-    var socket = new SockJS(this.url);
-    socket.onopen = function() {
-        socket.send(auth_json);
-    };
-    socket.onmessage =  function (event) {
-        var data = jQuery.parseJSON(event.data); 
-        _log(data);    
-         if(data.id === "time_exceeded") {
-            var t = '{"id":"ideas_list", "content":{';
-            var i = 0;
-            t += '"idea'+i+'":{';
-            t += this.ideas[0].id+','+this.ideas[0].text+','+this.ideas[0].description+','+this.ideas[0].rating;
-            t += '}';
-            for (var k = 1, l = this.ideas.keys.length; i < l; i++) {
-                t += ', "idea"'+k+':{'+this.ideas[0].id+','+this.ideas[0].text+','+this.ideas[0].description+','+this.ideas[0].rating;
-                t += '}';
+function Client(url) {
+    url = url;
+    this.ideas = [];
+
+    // server message handlers start
+    // the handler function hame should be message id
+    var handlers = {
+        time_exceeded: function () {
+            var ideasJson = '{"id":"ideas_list", "content":{';
+            for (var i = 0, l = ideas.keys.length; i < l; ++i) {
+                ideasJson += ', "idea"' + l + ':{'
+                    + JSON.stringify(ideas[l]) + '}';
             }
-            t += '}';
-            console.log("data - "+t);
-           //this.connect(t);  
-            h.connect(t);
-         }
-         if(data.id === 'ideas_list_combined') {  
+            ideasJson += '}';
+            console.log("data - " + ideasJson);
+            this.connect(ideasJson);
+        },
+        ideas_list_combined: function (data) {
             deleteIdeas();
-            var ideas = data.content;
-            this.ideas = JSON.parse(ideas);
-            for(var key in ideas)
-                drawIdea(ideas[key].text, ideas[key].description, ideas[key].rating);
-         }
+            console.log(data.content);
+            ideas = JSON.parse(data.content);
+            ideas.forEach(function (idea) { drawIdea(idea); });
+        }
     };
-}
 
-function authInfo(response) {
-  console.log("authentification info");
-  if (response.session) {
-    console.log('user: '+response.session.mid);
-  } else {
-    console.log('not auth');
-  }
-}
+    this.connect = function (authJson) {
+        var self = this;
+        var socket = new SockJS(url);
+        socket.onopen = function () {
+            socket.send(authJson);
+        };
+        socket.onmessage = function (event) {
+            console.log('message');
+            var data = event.data;//JSON.parse(event.data);
+            console.log('data: ' + data);
+            if (handlers[data.id] != undefined) {
+                handlers[data.id](data);
+            }
+        };
+    }
+};
+
+// function authInfo(response) {
+//     console.log("authentification info");
+//     if (response.session) {
+//         console.log('user: ' + response.session.mid);
+//     } else {
+//         console.log('not auth');
+//     }
 

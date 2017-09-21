@@ -1,18 +1,18 @@
 "use strict"
 
-function Idea(_id) {
-    this.id = _id;
+function Idea(id) {
+    this.id = id;
     this.text = "My Idea";
     this.description = "This is my idea. Hooray!";
     this.rating = 5;
 }
 
-function Idea(_id, _text, _description, /*optional*/ _rating) {
-    _rating = ( _rating !== undefined ) ? _rating : 0;
-    this.id = _id;
-    this.text = _text;
-    this.description = _description;
-    this.rating = _rating;
+function Idea(id, text, description, /*optional*/ rating) {
+    rating = rating != undefined  ? rating : 0;
+    this.id = id;
+    this.text = text;
+    this.description = description;
+    this.rating = rating;
 }
 
 Idea.prototype.QueryJson = function() {

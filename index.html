@@ -8,42 +8,43 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/grid12.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800&subset=latin,cyrillic' rel='stylesheet'
+        type='text/css'>
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
     <script src="https://npmcdn.com/draggabilly@2.1/dist/draggabilly.pkgd.min.js"></script>
-    <script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>
+    <!--<script src="http://cdn.sockjs.org/sockjs-0.3.min.js"></script>-->
     <script src="js/sockjs-0.3.4.min.js"></script>
     <script src="js/idea.js"></script>
     <script src="js/client.js"></script>
     <script src="js/handler.js"></script>
     <script src="js/view.js"></script>
     <script src="js/main.js"></script>
-    
-    <script language=JavaScript>  
-var message="Правый клик запрещен!";  
-  function clickIE4(){  
-  if (event.button==2){  
-  return false;  
-  }  
-  }  
-function clickNS4(e){  
-  if (document.layers||document.getElementById&&!document.all){  
-  if (e.which==2||e.which==3){   
-  return false;  
-  }  
-  }  
-  }  
-if (document.layers){  
-  document.captureEvents(Event.MOUSEDOWN);  
-  document.onmousedown=clickNS4;  
-  }  
-  else if (document.all&&!document.getElementById){  
-  document.onmousedown=clickIE4;  
-  }  
-document.oncontextmenu=new Function("return false")  
-  </script>
-    
+
+    <script>
+        var message = "Правый клик запрещен!";
+        function clickIE4() {
+            if (event.button == 2) { language=JavaScript
+                return false;
+            }
+        }
+        function clickNS4(e) {
+            if (document.layers || document.getElementById && !document.all) {
+                if (e.which == 2 || e.which == 3) {
+                    return false;
+                }
+            }
+        }
+        if (document.layers) {
+            document.captureEvents(Event.MOUSEDOWN);
+            document.onmousedown = clickNS4;
+        }
+        else if (document.all && !document.getElementById) {
+            document.onmousedown = clickIE4;
+        }
+        document.oncontextmenu = new Function("return false");
+    </script>
+
 </head>
 
 <body>
@@ -112,7 +113,7 @@ document.oncontextmenu=new Function("return false")
         </div>
         <!--<div style="padding: 0;" class="col-md-12">
             <button id="go_rate" onclick="return false" class="action_button">Show list!</button>
-        </div>-->        
+        </div>-->
         <section id="results">
             <h2>Best Idea:</h2>
             <span id="best_idea">This is the best idea!</span>

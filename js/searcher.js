@@ -1,9 +1,9 @@
 "use strict"
 
-function Searcher(_idea) {
-    _idea = JSON.parse(_idea); //deserialization
-    this.searchText = _idea.text;
-    this.keyWords = _idea.description; //parse the description to get key words?
+function Searcher(idea) {
+    idea = JSON.parse(idea); //deserialization
+    this.searchText = idea.text;
+    this.keyWords = idea.description; //parse the description to get key words?
     //TODO: sync with search engine api
 }
 
